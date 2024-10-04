@@ -2,28 +2,46 @@
 <html lang="ko">
 
 <head>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>아이템 검색기 (모 제작)</title>
+    <title>아이템 검색기</title>
 </head>
 
 <body>
-    <h1>아이템 검색기 (모 제작)</h1>
-    <label for="searchInput">아이템을 입력하세요:</label>
-    <input type="text" id="searchInput">
-    <button id="searchBtn" onclick="searchItem()">검색</button>
-    <div id="result"></div>
+    <h1>아이템</h1>
+    <div class="wrapper">
+        <div class="content">
+            <input type="text" placeholder="ex) 글라디우스" id="searchInput">
+            <button id="searchBtn" onclick="searchItem()">검색</button>
+        </div>
+    </div>
 
-    <h1>몬스터 검색</h1>
-    <label for="searchInput">몬스터 이름을 입력하세요:</label>
-    <input type="text" id="searchInput2">
-    <button id="searchBtn2" onclick="searchMob()">검색</button>
-    <div id="result2"></div>
+    <div class="wrapper">
+        <div class="content" id="result" style="min-height: 10rem; min-width: 30rem;" ></div>
+    </div>
+
+    <h1>몬스터</h1>
+    <div class="wrapper">
+        <div class="content">
+            <input type="text" placeholder="ex) 달팽이" id="searchInput2">
+            <button id="searchBtn2" onclick="searchMob()">검색</button>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <div class="content" id="result2" style="min-height: 7rem; min-width: 30rem;"></div>
+    </div>
 
     <script>
         function searchItem() {
             const name = document.getElementById('searchInput').value;
             const result = item.find(i => i.이름.indexOf(name) !== -1);
+
+            if(!result) {
+                alert('해당 아이템을 찾을 수 없습니다.');
+                return;
+            }
 
             const resultDiv = document.getElementById("result");
             resultDiv.innerHTML = "";
@@ -54,9 +72,10 @@
                 resultDiv.innerHTML = `
                     <p class="single-line"></p>
                     <p>이름: ${result.이름}</p>
+                    <p>LV: ${result["필요 레벨"]}</p>
                     <p>종류: ${weaponTypes[result.종류]}</p>
                     <p>직업: ${result.직업}</p>
-                    <p class="single-line">LV: ${result["필요 레벨"]}</p>
+                    <p class="single-line"></p>
                     ${addField("REQ STR", result.필요STR)}
                     ${addField("REQ DEX", result.필요DEX)}
                     ${addField("REQ INT", result.필요INT)}
@@ -75,11 +94,10 @@
                     ${addField("INT", result.INT)}
                     ${addField("LUK", result.LUK, "single-line")}
                     <p class="single-line"></p>
-                    <p class="single-line">판매비용: ${result.판매비용}</p>
+                    <p>판매비용: ${result.판매비용}</p>
+                    <p class="single-line"></p>
                     <p>드랍 몬스터: ${itemDropMobs}</p>
                 `;
-            } else {
-                alert('해당 아이템을 찾을 수 없습니다.');
             }
         }
 
@@ -92,18 +110,18 @@
             resultDiv2.innerHTML = "";
 
             let drops = "";
-            if(result2){
-                for(key in result2){
-                    if(key != "mob" && result2[key] != "-" ){
+            if (result2) {
+                for (key in result2) {
+                    if (key != "mob" && result2[key] != "-") {
                         drops += ` [${result2[key]}]`;
                     }
                 }
             }
 
-            if(result2){
+            if (result2) {
                 resultDiv2.innerHTML = `
                     <p class="single-line"></p>
-                    <p>몹 이름: ${result2.mob}</p>
+                    <p>이름: ${result2.mob}</p>
                     <p class="single-line"></p>
                     <p>드랍 아이템: ${drops}</p>
                     <p class="single-line"></p>
@@ -176,16 +194,88 @@
 
 </body>
 <style>
-    /* 모든 p 태그의 기본 여백을 제거 */
-    p {
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
         margin: 0;
-        /* 기본 여백 제거 */
+        padding: 20px;
+        color: #333;
     }
 
-    /* 특정 클래스에만 여백 추가 */
+    h1 {
+        color: #4CAF50;
+        text-align: center;
+    }
+
+    label {
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px 10px 5px 0; /* 오른쪽 여백 추가 */
+    }
+
+    input[type="text"] {
+        width: auto; /* 너비를 자동으로 설정 */
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    label, input[type="text"] {
+        vertical-align: middle; /* 라벨과 입력 필드를 중간 정렬 */
+    }
+
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        padding: 12px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    #result,
+    #result2 {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+        margin: 5px 0;
+    }
+
     .single-line {
-        margin-bottom: 10px;
-        /* 아래쪽에만 여백 추가 */
+        margin-top: 15px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .result-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .result-data {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        }
+    .content {
+        padding: 2rem;
+        font-size: 1rem;
+        border-radius: 1rem;
     }
 </style>
 
