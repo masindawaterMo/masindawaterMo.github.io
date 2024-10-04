@@ -144,9 +144,18 @@
 
     function searchMob() {
         const mobName = document.getElementById('searchInput2').value;
-        const result2 = mobTable.find(i => i.mob.indexOf(mobName) !== -1);
-        const result3 = mobInfo.find(i => i.이름.indexOf(mobName) !== -1);
 
+        const mobExactMatch = mobTable.find(i => i.mob === mobName);
+        const mobPartialMatch = mobTable.find(i => i.mob.indexOf(mobName) !== -1 && i.mob !== mobName);
+
+        // 정확한 일치 결과가 있으면 그걸 반환, 그렇지 않으면 부분 일치 결과 반환
+        const result2 = mobExactMatch || mobPartialMatch;
+
+        console.log(result2);
+
+        const result3 = mobInfo.find(i => i.이름 === result2.mob);
+
+        console.log(result3);
         const resultDiv2 = document.getElementById("result2");
         resultDiv2.innerHTML = "";
 
