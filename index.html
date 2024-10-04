@@ -9,30 +9,48 @@
 </head>
 
 <body>
-    <h1>아이템</h1>
-    <div class="wrapper">
-        <div class="content">
-            <input type="text" placeholder="ex) 글라디우스" id="searchInput">
-            <button id="searchBtn" onclick="searchItem()">검색</button>
+    <div id='wrap'>
+        <section>
+        <h1>아이템</h1>
+        <div class="wrapper">
+            <div class="content">
+                <input type="text" placeholder="ex) 글라디우스" id="searchInput">
+                <button id="searchBtn" onclick="searchItem()">검색</button>
+            </div>
         </div>
-    </div>
 
-    <div class="wrapper">
-        <div class="content" id="result" style="min-height: 10rem; min-width: 10rem;"></div>
-    </div>
-
-    <h1>몬스터</h1>
-    <div class="wrapper">
-        <div class="content">
-            <input type="text" placeholder="ex) 달팽이" id="searchInput2">
-            <button id="searchBtn2" onclick="searchMob()">검색</button>
+        <div class="wrapper">
+            <div class="content" id="result" style="min-height: 10rem; min-width: 10rem;"></div>
         </div>
-    </div>
 
-    <div class="wrapper">
-        <div class="content" id="result2" style="min-height: 7rem; min-width: 20rem;"></div>
-    </div>
+        <h1>몬스터</h1>
+        <div class="wrapper">
+            <div class="content">
+                <input type="text" placeholder="ex) 달팽이" id="searchInput2">
+                <button id="searchBtn2" onclick="searchMob()">검색</button>
+            </div>
+        </div>
 
+        <div class="wrapper">
+            <div class="content" id="result2" style="min-height: 7rem; min-width: 20rem;"></div>
+        </div>
+
+
+    </section>
+    <footer>
+        <div style="text-align: center;">
+            <a href="https://hits.seeyoufarm.com">
+                <img
+                    src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmaplehistorymo.shop&count_bg=%23000000&title_bg=%23000000&icon=openstreetmap.svg&icon_color=%23E7E7E7&title=Visitors&edge_flat=false" />
+            </a>
+        </div>
+        <p>
+            <span >Copyright 2024. 모(masindawater). All Rights Reserved.</span>
+        </p>
+    </footer>
+
+    </div>
+</body>
     <script>
         function searchItem() {
             const name = document.getElementById('searchInput').value;
@@ -195,7 +213,7 @@
 
     </script>
 
-</body>
+
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -284,6 +302,55 @@
         padding: 2rem;
         font-size: 1rem;
         border-radius: 1rem;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    #wrap {
+        min-height: 98vh;
+        position: relative;
+        width: 100%;
+        background-color: #f2f2f2;
+    }
+
+    section {
+        padding-bottom: 105px;
+    }
+
+    footer {
+        width: 100%;
+        height: 90px;
+        bottom: 0px;
+        position: absolute;
+        padding-top: 15px;
+        color: #808080;
+        font-size: 11px;
+        align-content: center;
+    }
+
+    footer a {
+        display: inline-block;
+        margin: 0 20px 10px 20px;
+        color: #808080;
+        font-size: 11px;
+    }
+
+    footer a:visited {
+        color: #808080;
+    }
+
+    footer p {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    footer p span {
+        display: block;
+        text-align: center;
     }
 </style>
 
