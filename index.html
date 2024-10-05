@@ -19,38 +19,38 @@
         <section>
             <h1>아이템</h1>
             <div class="wrapper">
-                <div class="content">
+                <div class="content" style="text-align: center;">
                     <input type="text" placeholder="ex) 글라디우스" id="searchInput">
                     <button id="searchBtn" onclick="searchItem()">검색</button>
                 </div>
             </div>
 
             <div class="wrapper">
-                <div class="content" id="result" style="min-height: 10rem; min-width: 10rem;"></div>
+                <div class="content" id="result"></div>
             </div>
 
             <h1>몬스터</h1>
             <div class="wrapper">
-                <div class="content">
+                <div class="content" style="text-align: center;">
                     <input type="text" placeholder="ex) 달팽이" id="searchInput2">
                     <button id="searchBtn2" onclick="searchMob()">검색</button>
                 </div>
             </div>
 
             <div class="wrapper">
-                <div class="content" id="result2" style="min-height: 7rem; min-width: 20rem;"></div>
+                <div class="content" id="result2"></div>
             </div>
 
             <h1>주문서</h1>
             <div class="wrapper">
-                <div class="content">
+                <div class="content" style="text-align: center;">
                     <input type="text" placeholder="ex1) 한손검 ex2) 장공" id="searchInput3">
                     <button id="searchBtn3" onclick=" searchScroll()">검색</button>
                 </div>
             </div>
 
             <div class="wrapper">
-                <div class="content" id="result3" style="min-height: 7rem; min-width: 20rem;"></div>
+                <div class="content" id="result3"></div>
             </div>
 
 
@@ -142,7 +142,7 @@
         }
     }
 
-    function searchMob() {
+        function searchMob() {
         const mobName = document.getElementById('searchInput2').value;
 
         const mobExactMatch = mobTable.find(i => i.mob === mobName);
@@ -150,12 +150,7 @@
 
         // 정확한 일치 결과가 있으면 그걸 반환, 그렇지 않으면 부분 일치 결과 반환
         const result2 = mobExactMatch || mobPartialMatch;
-
-        console.log(result2);
-
         const result3 = mobInfo.find(i => i.이름 === result2.mob);
-
-        console.log(result3);
         const resultDiv2 = document.getElementById("result2");
         resultDiv2.innerHTML = "";
 
@@ -187,7 +182,6 @@
         }
 
     }
-
     function searchScroll() {
         const scroll = document.getElementById('searchInput3').value;
 
@@ -198,8 +192,6 @@
         const resultDiv3 = document.getElementById("result3");
         resultDiv3.innerHTML = "";
 
-        console.log(mobsWithScroll);
-        
         if (mobsWithScroll) {
             resultDiv3.innerHTML = `
                     
@@ -373,6 +365,7 @@
         padding: 2rem;
         font-size: 1rem;
         border-radius: 1rem;
+        width: 26rem;
     }
 
     html,
