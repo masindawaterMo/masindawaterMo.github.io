@@ -78,12 +78,14 @@
 
     function addImg(value, type) {
         let imgUrl = ""
+        let alternativeUrl = `https://maplestory.io/api/kms/284/mob/${value}/icon?resize=2`
         
         if(type == "item")
-            imgUrl = `https://maplestory.io/api/gms/62/item/${value}/icon?resize=2`;
+            imgUrl = `https://maplestory.io/api/kms/284/item/${value}/icon?resize=2`;
         else if(type == "mob")
-            imgUrl = `https://maplestory.io/api/gms/62/mob/animated/${value}/move`;
-        return value !== 0 && value !== undefined ? `<img src="${imgUrl}" alt="Item Image" class="big-img"/>` : "";
+            imgUrl = `https://maplestory.io/api/kms/284/mob/animated/${value}/move`;
+
+        return value !== 0 && value !== undefined ? `<img src="${imgUrl}" alt="Item Image" class="big-img" onerror="this.onerror=null; this.src='${alternativeUrl}';"/>` : "";
     }
 
     function addField2(label, value, cssClass = "") {
