@@ -72,7 +72,6 @@
     </div>
 </body>
 <script>
-    // 필드 값이 0이 아닌 경우만 해당 정보를 추가하는 함수
     function addField(label, value, cssClass = "") {
         return value !== 0 && value !== undefined ? `<p class="${cssClass}">${label}: ${value}</p>` : "";
     }
@@ -96,12 +95,12 @@
     function addMopType(result) {
         let mopType = ``
 
-        mopType += findMopType(result, "독");
-        mopType += findMopType(result, "불");
-        mopType += findMopType(result, "전", "기");
-        mopType += findMopType(result, "얼", "음");
-        mopType += findMopType(result, "성");
         mopType += findMopType(result, "힐");
+        mopType += findMopType(result, "성");
+        mopType += findMopType(result, "얼", "음");
+        mopType += findMopType(result, "전", "기");
+        mopType += findMopType(result, "불");
+        mopType += findMopType(result, "독");
 
         return mopType != `` ? `<p">속성: ${mopType}</p>` : ``;
     }
