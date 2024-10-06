@@ -102,7 +102,7 @@
         mopType += findMopType(result, "불");
         mopType += findMopType(result, "독");
 
-        return mopType != `` ? `<p">속성: ${mopType}</p>` : ``;
+        return mopType != `` ? `<p">속성: ${mopType.slice(0, -1)}</p>` : ``;
     }
 
     function findMopType(result, type, tail = "") {
@@ -110,15 +110,15 @@
         let content = "";
         if (value == 1) {
             if (type == "힐") {
-                content += `힐 공격 가능 `;
+                content += ` 힐 공격 가능/`;
             }
             else {
-                content += `${type}${tail} 약점 `
+                content += `${type}${tail} 약점/`
             }
         }
 
         if (value == 2) {
-            content += `${type}${tail} 반감 `
+            content += `${type}${tail} 반감/`
         }
 
         return content;
@@ -206,8 +206,6 @@
                     if (key.startsWith("drop")) {
                         drops += ` ${result2[key]}`;
                     } else if (key.startsWith("probability")) {
-                        console.log(result2[key])
-                        console.log(result2[key] / 4)
                         drops += `(${Math.round(((result2[key] / 4) * 100)*10000000)/10000000}%)<br>`;
                     }
 
