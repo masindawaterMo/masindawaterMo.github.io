@@ -209,7 +209,7 @@
                     } else if (key.startsWith("probability")) {
                         console.log(result2[key])
                         console.log(result2[key] / 4)
-                        drops += `(${result2[key] * 100 / 4}%)<br>`;
+                        drops += `(${Math.round(((result2[key] / 4) * 100)*10000000)/10000000}%)<br>`;
                     }
 
 
