@@ -1,0 +1,71 @@
+.item-detail-card-container {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  border-color: white;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 2%;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+input[type="text"] {
+  width: 20rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #555;
+  color: white;
+}
+
+label,
+input[type="text"] {
+  vertical-align: middle;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: start;
+}
+
+.item-detail-card-img {
+  width: 8rem;
+  height: 8rem;
+  padding: 2rem;
+}
+
+#suggestions {
+  margin-top: 1rem;
+  width: 20rem;
+  flex-direction: column;
+  display: flex;
+  list-style: none;
+  cursor: pointer;
+  overflow-y: auto;
+  max-height: 20rem;
+  background-color: #555;
+  border-color: rgba(255, 255, 255, 0.356);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2%;
+}
+
+#suggestions li {
+  padding: 5px;
+}
+
+#suggestions li:hover {
+  background-color: slategray;
+}
+
+.suggestion-img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+li {
+  display: flex; /* 플렉스박스를 사용하여 이미지와 텍스트를 수평 정렬 */
+  align-items: center; /* 이미지와 텍스트를 수직 중앙 정렬 */
+}
