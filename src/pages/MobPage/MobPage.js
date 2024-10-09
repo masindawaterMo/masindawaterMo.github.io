@@ -81,12 +81,18 @@ const MobPage = () => {
           } else if (key.startsWith("probability")) {
             dropsContent += `(${
               Math.round((foundDropTable[key] / 4) * 100 * 10000000) / 10000000
-            }%)
+            }%)/
 
             `;
           }
         }
       }
+    }
+
+    dropsContent = dropsContent.slice(0, -1);
+
+    if (dropsContent === "") {
+      dropsContent = "드랍 아이템 : X";
     }
 
     setDrops(dropsContent);
@@ -98,7 +104,7 @@ const MobPage = () => {
 
   function addField(label, value, cssClass = "") {
     return value !== undefined && value !== null ? (
-        <p className={cssClass}>
+      <p className={cssClass}>
         {label}: {value}
       </p>
     ) : (
@@ -106,7 +112,7 @@ const MobPage = () => {
     );
   }
 
-  function addMopType(result) {
+  const addMopType = (result) => {
     let mopType = ``;
 
     mopType += findMopType(result, "힐");
@@ -116,8 +122,8 @@ const MobPage = () => {
     mopType += findMopType(result, "불");
     mopType += findMopType(result, "독");
 
-    return mopType !== `` ? `속성: ${mopType.slice(0, -1)}` : ``;
-  }
+    return mopType !== `` ? <p>속성: {mopType.slice(0, -1)}</p> : ``;
+  };
 
   function findMopType(result, type, tail = "") {
     const value = result[type];
@@ -165,7 +171,9 @@ const MobPage = () => {
         {addField("주문서", mobResult.주문서)}
         {addField("추천 사냥터", mobResult["추천 사냥터"])}
         <p className="single-line"></p>
-        <div>{drops}</div>
+        {drops.split("/").map((drop, index) => (
+          <p key={index}>{drop}</p>
+        ))}
         <p className="single-line"></p>
       </div>
     );
@@ -205,7 +213,7 @@ const MobPage = () => {
                     }
                     alt="icon"
                   />
-                  <p>{mob.이름}</p>
+                  <label>{mob.이름}</label>
                 </li>
               ))}
             </ul>

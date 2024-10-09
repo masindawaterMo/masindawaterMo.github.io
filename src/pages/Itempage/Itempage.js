@@ -217,7 +217,7 @@ const ItemPage = () => {
                     }
                     alt="icon"
                   />
-                  <p>{item.이름}</p>
+                  <label>{item.이름}</label>
                 </li>
               ))}
             </ul>
