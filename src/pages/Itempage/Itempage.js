@@ -122,6 +122,16 @@ const ItemPage = () => {
     });
   };
 
+  const addItemResult = (label, value) => {
+    if (value == undefined || value == 0) return "";
+
+    return (
+      <p>
+        {label}: {value}
+      </p>
+    );
+  };
+
   const renderItem = () => {
     if (!itemResult) return null;
 
@@ -151,14 +161,19 @@ const ItemPage = () => {
         <p>REQ LUK: {itemResult.필요LUK}</p>
         <p className="single-line"></p>
 
-        <p>공격 속도: {attackSpeeds[itemResult.공격속도]}</p>
-        <p>공격력: {itemResult.공격력}</p>
-        <p>마력: {itemResult.마력}</p>
-        <p>HP: {itemResult.HP}</p>
-        <p>MP: {itemResult.MP}</p>
-        <p>명중률: {itemResult.명중률}</p>
-        <p>회피율: {itemResult.회피율}</p>
-        <p>이동속도: {itemResult.이동속도}</p>
+        {addItemResult("STR", itemResult.STR)}
+        {addItemResult("DEX", itemResult.DEX)}
+        {addItemResult("INT", itemResult.INT)}
+        {addItemResult("LUK", itemResult.LUK)}
+
+        {addItemResult("공격 속도", attackSpeeds[itemResult.공격속도])}
+        {addItemResult("공격력", itemResult.공격력)}
+        {addItemResult("마력", itemResult.마력)}
+        {addItemResult("HP", itemResult.HP)}
+        {addItemResult("MP", itemResult.MP)}
+        {addItemResult("명중률", itemResult.명중률)}
+        {addItemResult("회피율", itemResult.회피율)}
+        {addItemResult("이동 속도", itemResult.이동속도)}
         <p className="single-line"></p>
 
         <p>판매비용: {itemResult.판매비용.toLocaleString("ko-KR")}</p>
