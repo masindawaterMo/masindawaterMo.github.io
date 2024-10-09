@@ -1,0 +1,42 @@
+.filter-container {
+  display: flex;
+  flex-direction: column;
+  width: 86rem;
+  height: fit-content;
+  background-color: #27272a;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 20px;
+}
+
+.filter-card {
+  background-color: #27272a;
+
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.filter-button {
+  color: white;
+  width: fit-content;
+  height: fit-content;
+  background-color: #7c7c83;
+  padding: 7px;
+  font-size: medium;
+  font-family: BMJUA;
+  margin: 10px 10px 0px 0px;
+}
+
+.filter-button.active {
+  background-color: #4caf50; /* 선택되었을 때의 색상 */
+}
+
+.button-container {
+  display: flex;
+  background-color: #27272a;
+  flex-wrap: wrap;
+}
+
+.label {
+  margin: 0px;
+}

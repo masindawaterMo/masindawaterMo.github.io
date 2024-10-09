@@ -1,15 +1,49 @@
 import item from "../../data/item";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import mobDropTable from "../../data/mobDropTable";
 import attackSpeeds from "../../data/attackSpeeds";
 import weaponTypes from "../../data/weaponTypes";
 import "./ItemPage.css";
+import { useParams } from "react-router-dom";
 
 const ItemPage = () => {
   const [searchItemInput, setSearchItemInput] = useState("");
   const [itemResult, setItemResult] = useState(null);
   const [filteredItems, setFilteredItems] = useState([]); // 추천 검색어 상태
   const [showSuggestions, setShowSuggestions] = useState(false); // 추천 검색어 창 표시 여부
+  const { itemId } = useParams(); // URL에서 아이템 ID 가져오기
+
+  useEffect(() => {
+    if (itemId == undefined) return;
+    const foundItem = item.find((i) => i.코드 == itemId);
+
+    if (!foundItem) {
+      console.log(itemId);
+      alert("해당 아이템을 찾을 수 없습니다.");
+      return;
+    }
+
+    const foundMobs = new Set();
+    mobDropTable.forEach((mob) => {
+      if (Object.values(mob).some((drop) => drop === foundItem.이름)) {
+        foundMobs.add(mob);
+      }
+    });
+
+    let itemDropMobs = "해당 아이템을 드랍하는 몬스터가 없습니다.";
+    if (foundMobs.size > 0) {
+      itemDropMobs = Array.from(foundMobs)
+        .map((mob) => `[${mob.이름}]`)
+        .join(", ");
+    }
+
+    setSearchItemInput(foundItem.이름);
+
+    setItemResult({
+      ...foundItem,
+      itemDropMobs,
+    });
+  }, [itemId]); // itemId가 변경될 때마다 실행
 
   // 검색어 입력 시 실행되는 함수
   const handleSearch = (e) => {

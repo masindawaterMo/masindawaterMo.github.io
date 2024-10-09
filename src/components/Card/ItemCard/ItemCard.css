@@ -7,7 +7,7 @@
 
 .item-image {
   padding: 5%;
-  margin-right: 2rem;
+  margin-right: 1rem;
   width: 90px;
   height: 90px;
 }
@@ -16,8 +16,14 @@
   color: white;
   padding: 5%;
   display: flex;
+  font-family: BMJUA;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-end;
+  text-align: left;
+}
+
+.item-card-button:hover {
+  background-color: rgb(77, 77, 77);
 }
 
 .card-container {
