@@ -9,37 +9,39 @@ const ItemFilter = ({ setFilteredItems }) => {
   const [selectedItemTypes, setSelectedItemTypes] = useState([]);
 
   const toggleJobSelection = (job) => {
-    if (selectedJobs.includes(job)) {
-      setSelectedJobs(selectedJobs.filter((j) => j !== job));
-    } else {
-      setSelectedJobs([...selectedJobs, job]);
-    }
+    setSelectedJobs((prevSelectedJobs) =>
+      prevSelectedJobs.includes(job)
+        ? prevSelectedJobs.filter((j) => j !== job)
+        : [...prevSelectedJobs, job]
+    );
   };
 
   const toggleItemTypeSelection = (type) => {
-    if (selectedItemTypes.includes(type)) {
-      setSelectedItemTypes(selectedItemTypes.filter((t) => t !== type));
-    } else {
-      setSelectedItemTypes([...selectedItemTypes, type]);
-    }
+    setSelectedItemTypes((prevSelectedItemTypes) =>
+      prevSelectedItemTypes.includes(type)
+        ? prevSelectedItemTypes.filter((t) => t !== type)
+        : [...prevSelectedItemTypes, type]
+    );
   };
 
   useEffect(() => {
-    const filteredItems = items.filter((item) => {
-      const itemJobs = item.직업.split("/"); // 직업을 /로 분리
-      const isJobMatch =
-        selectedJobs.length === 0 ||
-        selectedJobs.some(
-          (job) => itemJobs.includes(job) || itemJobs.includes("공용")
-        );
-      const isTypeMatch =
-        selectedItemTypes.length === 0 ||
-        selectedItemTypes.includes(itemType[item.종류]);
-      return isJobMatch && isTypeMatch;
-    });
+    const debounce = setTimeout(() => {
+      const filteredItems = items.filter((item) => {
+        const itemJobs = item.직업.split("/");
+        const isJobMatch =
+          selectedJobs.length === 0 ||
+          selectedJobs.some(
+            (job) => itemJobs.includes(job) || itemJobs.includes("공용")
+          );
+        const isTypeMatch =
+          selectedItemTypes.length === 0 ||
+          selectedItemTypes.includes(itemType[item.종류]);
+        return isJobMatch && isTypeMatch;
+      });
+      setFilteredItems(filteredItems);
+    }, 100); // 300ms 딜레이
 
-    // 필터된 아이템 목록을 부모로 전달
-    setFilteredItems(filteredItems);
+    return () => clearTimeout(debounce);
   }, [selectedJobs, selectedItemTypes, setFilteredItems]);
 
   return (
@@ -54,6 +56,10 @@ const ItemFilter = ({ setFilteredItems }) => {
               selectedJobs.includes(job) ? styles.active : ""
             }`}
             onClick={() => toggleJobSelection(job)}
+            onTouchEnd={(e) => {
+              e.preventDefault(); // 기본 동작 방지
+              toggleJobSelection(job);
+            }}
           >
             {job}
           </button>
@@ -71,6 +77,10 @@ const ItemFilter = ({ setFilteredItems }) => {
                 selectedItemTypes.includes(type) ? styles.active : ""
               }`}
               onClick={() => toggleItemTypeSelection(type)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                toggleItemTypeSelection(type);
+              }}
             >
               {type}
             </button>
@@ -88,6 +98,10 @@ const ItemFilter = ({ setFilteredItems }) => {
                 selectedItemTypes.includes(type) ? styles.active : ""
               }`}
               onClick={() => toggleItemTypeSelection(type)}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                toggleItemTypeSelection(type);
+              }}
             >
               {type}
             </button>
