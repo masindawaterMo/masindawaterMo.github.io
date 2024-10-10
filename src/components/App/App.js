@@ -10,17 +10,8 @@ import Scroll from "../../pages/ScrollPage/ScrollPage";
 import { useEffect } from "react";
 
 function App() {
-  useEffect(() => {
-    if (window.performance) {
-      if (performance.navigation.type === 1) {
-        // 새로고침 감지 시 홈으로 리다이렉트
-        window.location.href = "/";
-      }
-    }
-  }, []);
-
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Nav />
         <Routes>
