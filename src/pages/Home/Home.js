@@ -40,9 +40,9 @@ const Home = () => {
       <div className="container">
         <div className="raw">
           {filteredItems.map((filteredItem, i) => {
-            return filteredItem.imgCode !== 0 ? (
+            return (
               <ItemCard item={filteredItem} i={i} key={filteredItem.코드} />
-            ) : null;
+            );
           })}
         </div>
       </div>
