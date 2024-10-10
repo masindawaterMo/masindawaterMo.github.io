@@ -33,6 +33,21 @@ const ItemFilter = ({ setFilteredItems }) => {
   };
 
   useEffect(() => {
+    // 새로 고침할 때 sessionStorage 비우기
+    const handleBeforeUnload = () => {
+      sessionStorage.removeItem("selectedJobs");
+      sessionStorage.removeItem("selectedItemTypes");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    // 컴포넌트 언마운트 시 이벤트 리스너 제거
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
     const debounce = setTimeout(() => {
       const filteredItems = items.filter((item) => {
         const itemJobs = item.직업.split("/");
