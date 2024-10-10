@@ -1,0 +1,40 @@
+.upgrade-label {
+  font-size: x-large;
+  margin: 0;
+  margin-top: 2rem;
+}
+
+.div-flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.div-flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 2rem;
+}
+
+.rank-button {
+  font-family: "BMZUA";
+  background-color: #0842a0;
+  font-size: large;
+}
+
+.rank-button:hover {
+  background-color: darkblue;
+}
+
+.rank-button:disabled {
+  background-color: gray;
+}
+
+.nickname-input[type="text"] {
+  width: 10rem;
+  height: 3rem;
+  margin-right: 1rem;
+}

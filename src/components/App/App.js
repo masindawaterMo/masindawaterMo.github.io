@@ -7,7 +7,7 @@ import Home from "../../pages/Home/Home";
 import ItemPage from "../../pages/Itempage/Itempage";
 import MobPage from "../../pages/MobPage/MobPage";
 import Scroll from "../../pages/ScrollPage/ScrollPage";
-import { useEffect } from "react";
+import UpgradeSimulPage from "../../pages/UpgradeSimulPage/UpgradeSimulPage";
 
 function App() {
   return (
@@ -20,6 +20,7 @@ function App() {
           <Route path="/mob" element={<MobPage />} />
           <Route path="/scroll" element={<Scroll />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
+          <Route path="/upgradeSimul" element={<UpgradeSimulPage />} />
         </Routes>
 
         <Footer />
@@ -29,3 +30,4 @@ function App() {
 }
 
 export default App;
+

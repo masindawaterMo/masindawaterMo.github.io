@@ -22,6 +22,9 @@ function Nav() {
           <Link className="navbarMenu" to={"/scroll"}>
             주문서
           </Link>
+          <Link className="navbarMenu" to={"/upgradeSimul"}>
+            강화 시뮬레이터
+          </Link>
         </div>
       </div>
     </div>

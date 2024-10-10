@@ -1,0 +1,29 @@
+.right {
+  margin-left: 10rem;
+  margin-top: 3rem;
+}
+
+.left {
+  margin-right: 11rem;
+  margin-top: 7rem;
+}
+
+.card-center {
+  margin-left: 9rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.left-title {
+  color: blueviolet;
+}
+
+.rank-ul {
+  font-size: xx-large;
+}
+
+.rank-li {
+  margin-top: 1rem;
+}
