@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/masindawaterMo.github.io/static/css/main.07dea6a5.css",
-    "main.js": "/masindawaterMo.github.io/static/js/main.9c8dbe71.js",
-    "static/js/453.09e2f4c3.chunk.js": "/masindawaterMo.github.io/static/js/453.09e2f4c3.chunk.js",
-    "index.html": "/masindawaterMo.github.io/index.html",
-    "main.07dea6a5.css.map": "/masindawaterMo.github.io/static/css/main.07dea6a5.css.map",
-    "main.9c8dbe71.js.map": "/masindawaterMo.github.io/static/js/main.9c8dbe71.js.map",
-    "453.09e2f4c3.chunk.js.map": "/masindawaterMo.github.io/static/js/453.09e2f4c3.chunk.js.map"
+    "main.css": "/static/css/main.07dea6a5.css",
+    "main.js": "/static/js/main.656f32ea.js",
+    "static/js/453.09e2f4c3.chunk.js": "/static/js/453.09e2f4c3.chunk.js",
+    "index.html": "/index.html",
+    "main.07dea6a5.css.map": "/static/css/main.07dea6a5.css.map",
+    "main.656f32ea.js.map": "/static/js/main.656f32ea.js.map",
+    "453.09e2f4c3.chunk.js.map": "/static/js/453.09e2f4c3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.07dea6a5.css",
-    "static/js/main.9c8dbe71.js"
+    "static/js/main.656f32ea.js"
   ]
 }

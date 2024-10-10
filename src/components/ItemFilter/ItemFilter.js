@@ -5,23 +5,31 @@ import jobs from "../../data/jobs";
 import items from "../../data/item";
 
 const ItemFilter = ({ setFilteredItems }) => {
-  const [selectedJobs, setSelectedJobs] = useState([]);
-  const [selectedItemTypes, setSelectedItemTypes] = useState([]);
+  const [selectedJobs, setSelectedJobs] = useState(
+    JSON.parse(sessionStorage.getItem("selectedJobs")) || []
+  );
+  const [selectedItemTypes, setSelectedItemTypes] = useState(
+    JSON.parse(sessionStorage.getItem("selectedItemTypes")) || []
+  );
 
   const toggleJobSelection = (job) => {
-    setSelectedJobs((prevSelectedJobs) =>
-      prevSelectedJobs.includes(job)
+    setSelectedJobs((prevSelectedJobs) => {
+      const newJobs = prevSelectedJobs.includes(job)
         ? prevSelectedJobs.filter((j) => j !== job)
-        : [...prevSelectedJobs, job]
-    );
+        : [...prevSelectedJobs, job];
+      sessionStorage.setItem("selectedJobs", JSON.stringify(newJobs));
+      return newJobs;
+    });
   };
 
   const toggleItemTypeSelection = (type) => {
-    setSelectedItemTypes((prevSelectedItemTypes) =>
-      prevSelectedItemTypes.includes(type)
+    setSelectedItemTypes((prevSelectedItemTypes) => {
+      const newTypes = prevSelectedItemTypes.includes(type)
         ? prevSelectedItemTypes.filter((t) => t !== type)
-        : [...prevSelectedItemTypes, type]
-    );
+        : [...prevSelectedItemTypes, type];
+      sessionStorage.setItem("selectedItemTypes", JSON.stringify(newTypes));
+      return newTypes;
+    });
   };
 
   useEffect(() => {
@@ -39,7 +47,7 @@ const ItemFilter = ({ setFilteredItems }) => {
         return isJobMatch && isTypeMatch;
       });
       setFilteredItems(filteredItems);
-    }, 100); // 300ms 딜레이
+    }, 100);
 
     return () => clearTimeout(debounce);
   }, [selectedJobs, selectedItemTypes, setFilteredItems]);

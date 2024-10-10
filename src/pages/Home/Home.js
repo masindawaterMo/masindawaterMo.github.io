@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ItemCard from "../../components/Card/ItemCard/ItemCard";
 import item from "../../data/item";
 import "./Home.css";
 import ItemFilter from "../../components/ItemFilter/ItemFilter";
 
 const Home = () => {
-  const [filteredItems, setFilteredItems] = useState(item); // 초기에는 모든 아이템을 표시
+  const [filteredItems, setFilteredItems] = useState(() => {
+    const storedItems = sessionStorage.getItem("filteredItems");
+    return storedItems ? JSON.parse(storedItems) : item;
+  });
+
+  useEffect(() => {
+    // filteredItems가 변경될 때마다 sessionStorage에 저장
+    sessionStorage.setItem("filteredItems", JSON.stringify(filteredItems));
+  }, [filteredItems]);
 
   return (
     <div id="wrap">
@@ -19,11 +27,7 @@ const Home = () => {
         <div className="raw">
           {filteredItems.map((filteredItem, i) => {
             return filteredItem.imgCode !== 0 ? (
-              <ItemCard
-                item={filteredItem}
-                i={i}
-                key={filteredItem.코드}
-              />
+              <ItemCard item={filteredItem} i={i} key={filteredItem.코드} />
             ) : null;
           })}
         </div>
