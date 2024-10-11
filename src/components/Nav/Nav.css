@@ -1,34 +1,62 @@
-/* 전체 네비게이션 바 */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 20px;
   background-color: black;
+  position: relative; /* Absolute positioning을 위한 relative */
 }
 
-/* 왼쪽 정렬 링크 */
 .navbar-left {
+  font-size: 24px;
   color: white;
-  text-decoration: none;
-  font-size: 18px;
 }
 
-/* 오른쪽 정렬 링크를 묶는 컨테이너 */
 .navbar-right {
   display: flex;
-  gap: 20px; /* 링크 간격 */
-}
-
-/* 오른쪽 정렬 링크 */
-.navbar-right a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .navbarMenu {
   color: white;
-  margin: 10px;
+  padding: 0 15px;
   text-decoration: none;
+}
+
+.hamburger {
+  display: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* 미디어 쿼리: 화면 너비가 768px 이하일 때 */
+@media (max-width: 768px) {
+  .navbar-right {
+    display: none;
+    position: absolute;
+    top: 100%; /* 네비게이션 바 아래쪽에 위치 */
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: #333;
+    text-align: center;
+    padding: 10px 0;
+    z-index: 1000; /* 네비게이션 바 위에 표시되도록 z-index 설정 */
+  }
+
+  .navbar-right.open {
+    display: flex;
+  }
+
+  .navbarMenu {
+    padding: 10px 0;
+    width: 100%; /* 메뉴를 전체 너비로 설정 */
+    text-align: center;
+    /* background-color: black; */
+  }
+
+  .hamburger {
+    display: block;
+  }
 }

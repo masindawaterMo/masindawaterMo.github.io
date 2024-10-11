@@ -285,6 +285,14 @@ const UpgradeItemCard = ({ rankingList }) => {
       <div className="center">{renderItem()}</div>
       <label className={styles["upgrade-label"]}>{result}</label>
       <div className="center">
+        <label className={styles["reset-button"]} onClick={applyUpgradeCount}>
+          🔄
+        </label>
+        <label className={styles["upgrade-button"]} onClick={upgrade}>
+          강화
+        </label>
+      </div>
+      <div className="center">
         {remainingUpgrades === 0 && (
           <div className={styles["div-flex-row"]}>
             <input
@@ -301,7 +309,7 @@ const UpgradeItemCard = ({ rankingList }) => {
               onClick={handleRankRegistration}
               disabled={!nickname}
             >
-              랭킹 등록
+              등록
             </button>
           </div>
         )}

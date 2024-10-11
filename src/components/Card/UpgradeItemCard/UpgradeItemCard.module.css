@@ -43,3 +43,46 @@
   font-size: x-large;
   margin-top: 2rem;
 }
+
+.upgrade-button {
+  display: none;
+}
+
+.reset-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .upgrade-button {
+    background-color: #3664b9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 9px;
+    padding: 15px;
+    width: fit-content;
+    height: fit-content;
+    display: block;
+  }
+
+  .reset-button {
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 2rem;
+    display: block;
+    font-size: 45px;
+    padding: 0;
+    margin: 0;
+  }
+
+  .reset-button:hover {
+    background-color: transparent;
+  }
+
+  .upgrade-button:hover {
+    background-color: #0842a0;
+  }
+}

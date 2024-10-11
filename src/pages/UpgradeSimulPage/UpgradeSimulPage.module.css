@@ -1,15 +1,16 @@
 .right {
   margin-left: 10rem;
   margin-top: 3rem;
+  width: 15rem;
 }
 
 .left {
-  margin-right: 11rem;
-  margin-top: 7rem;
+  margin-right: 10rem;
+  margin-top: 3rem;
+  width: 15rem;
 }
 
 .card-center {
-  margin-top: 3rem;
   display: flex;
   justify-content: center;
   flex-direction: row;
@@ -25,4 +26,40 @@
 
 .rank-li {
   margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .card-center {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .right {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  .left {
+    margin: 0;
+    display: none;
+  }
+
+  .left-title {
+    color: blueviolet;
+  }
+
+  .rank-ul {
+    font-size: xx-large;
+  }
+
+  .rank-li {
+    margin-top: 1rem;
+    justify-content: center;
+  }
 }
