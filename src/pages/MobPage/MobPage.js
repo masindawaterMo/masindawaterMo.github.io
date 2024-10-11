@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import mobDropTable from "../../data/mobDropTable";
 import mob from "../../data/mobInfo";
 import "./MobPage.css";
@@ -10,6 +10,7 @@ const MobPage = () => {
   const [showSuggestions, setShowSuggestions] = useState(false); // 추천 검색어 창 표시 여부
   const [drops, setDrops] = useState("");
   const [errorCount, setErrorCount] = useState(0);
+  const errorCountRef = useRef(errorCount); // 최신 상태를 추적하기 위한 useRef
 
   // 검색어 입력 시 실행되는 함수
   const handleSearch = (e) => {
@@ -146,21 +147,22 @@ const MobPage = () => {
   }
 
   const handleImgError = (e) => {
-    setErrorCount((prevCount) => prevCount + 1);
+    errorCountRef.current += 1; // useRef로 최신 상태 업데이트
+    setErrorCount(errorCountRef.current);
 
-    if (errorCount === 0) {
+    if (errorCountRef.current === 1) {
       // 첫 번째 대체 이미지
       e.target.src = `https://maplestory.io/api/kms/284/mob/${mobResult.mobCode}/icon?resize=2`;
-    } else if (errorCount === 1) {
+    } else if (errorCountRef.current === 2) {
       // 두 번째 대체 이미지
       e.target.src = `https://maplestory.io/api/TMS/209/mob/animated/${mobResult.mobCode}/move`;
-    } else if (errorCount === 2) {
+    } else if (errorCountRef.current === 3) {
       // 세 번째 대체 이미지
-      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mobResult.mobCode}/icon?resize=2`; // 세 번째 대체 이미지 URL
+      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mobResult.mobCode}/icon?resize=2`;
     } else {
       // 더 이상 대체할 이미지가 없으면 에러 핸들러를 제거하거나 기본 이미지를 사용
       e.target.onerror = null;
-      e.target.src = `https://maplestory.io/api/kms/284/mob/4001102/icon?resize=1`; // 기본 이미지 URL
+      e.target.src = `https://maplestory.io/api/kms/284/mob/1210102/icon?resize=1`;
     }
   };
 
@@ -227,11 +229,10 @@ const MobPage = () => {
                     src={
                       mob.mobCode !== 0
                         ? `https://maplestory.io/api/kms/284/mob/${mob.mobCode}/icon?resize=1`
-                        : "https://maplestory.io/api/kms/284/mob/4001102/icon?resize=1"
+                        : "https://maplestory.io/api/kms/284/mob/1210102/icon?resize=1"
                     }
                     onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mob.mobCode}/icon?resize=1`; // 기본 이미지 URL
+                      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mob.mobCode}/icon?resize=1`;
                     }}
                     alt="icon"
                   />
