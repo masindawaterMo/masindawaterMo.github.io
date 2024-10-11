@@ -40,7 +40,7 @@ const UpgradeSimulPage = () => {
     const rankingQuery = query(
       rankingsRef,
       orderBy("upgradeCount", "desc"),
-      limit(5)
+      orderBy("timestamp", "desc")
     );
 
     const querySnapshot = await getDocs(rankingQuery);
@@ -80,7 +80,7 @@ const UpgradeSimulPage = () => {
         </div>
         <UpgradeItemCard rankingList={rankingList} />
         <div className={styles["right"]}>
-          <h1>Top 5</h1>
+          <h1>Top 10</h1>
           {loading ? (
             <p>Loading...</p> // 데이터 로딩 중일 때 표시
           ) : (

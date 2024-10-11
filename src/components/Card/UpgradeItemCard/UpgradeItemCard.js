@@ -235,7 +235,7 @@ const UpgradeItemCard = ({ rankingList }) => {
 
     if (lowestRank) {
       // 랭킹이 있을 경우
-      if (rankingList.length < 5 || upgradeCount >= lowestRank.upgradeCount) {
+      if (rankingList.length < 10 || upgradeCount >= lowestRank.upgradeCount) {
         if (!checkNickName(nickname)) return;
 
         await registerRank(); // 랭킹 등록 로직 호출
@@ -262,6 +262,7 @@ const UpgradeItemCard = ({ rankingList }) => {
     const newRanking = {
       nickname: nickname,
       upgradeCount: upgradeCount,
+      timestamp: new Date(), // 현재 시간 등록
     };
     try {
       await addDoc(collection(db, "rankings"), newRanking);
