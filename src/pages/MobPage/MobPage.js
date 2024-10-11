@@ -9,6 +9,8 @@ const MobPage = () => {
   const [filteredMobs, setFilteredMobs] = useState([]); // 추천 검색어 상태
   const [showSuggestions, setShowSuggestions] = useState(false); // 추천 검색어 창 표시 여부
   const [drops, setDrops] = useState("");
+  const [errorCount, setErrorCount] = useState(0);
+
   // 검색어 입력 시 실행되는 함수
   const handleSearch = (e) => {
     const searchValue = e.target.value.toLowerCase();
@@ -143,6 +145,25 @@ const MobPage = () => {
     return content;
   }
 
+  const handleImgError = (e) => {
+    setErrorCount((prevCount) => prevCount + 1);
+
+    if (errorCount === 0) {
+      // 첫 번째 대체 이미지
+      e.target.src = `https://maplestory.io/api/kms/284/mob/${mobResult.mobCode}/icon?resize=2`;
+    } else if (errorCount === 1) {
+      // 두 번째 대체 이미지
+      e.target.src = `https://maplestory.io/api/TMS/209/mob/animated/${mobResult.mobCode}/move`;
+    } else if (errorCount === 2) {
+      // 세 번째 대체 이미지
+      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mobResult.mobCode}/icon?resize=2`; // 세 번째 대체 이미지 URL
+    } else {
+      // 더 이상 대체할 이미지가 없으면 에러 핸들러를 제거하거나 기본 이미지를 사용
+      e.target.onerror = null;
+      e.target.src = `https://maplestory.io/api/kms/284/mob/4001102/icon?resize=1`; // 기본 이미지 URL
+    }
+  };
+
   const renderMob = () => {
     if (!mobResult) return null;
 
@@ -153,10 +174,7 @@ const MobPage = () => {
             className="mob-detail-card-img"
             src={`https://maplestory.io/api/kms/284/mob/animated/${mobResult.mobCode}/move`}
             alt="Mob"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = `https://maplestory.io/api/kms/284/mob/${mobResult.mobCode}/icon?resize=2`;
-            }}
+            onError={handleImgError}
           />
         </div>
         <h2>{mobResult.이름}</h2>
@@ -211,6 +229,10 @@ const MobPage = () => {
                         ? `https://maplestory.io/api/kms/284/mob/${mob.mobCode}/icon?resize=1`
                         : "https://maplestory.io/api/kms/284/mob/4001102/icon?resize=1"
                     }
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mob.mobCode}/icon?resize=1`; // 기본 이미지 URL
+                    }}
                     alt="icon"
                   />
                   <label>{mob.이름}</label>
@@ -228,5 +250,3 @@ const MobPage = () => {
 };
 
 export default MobPage;
-
-
