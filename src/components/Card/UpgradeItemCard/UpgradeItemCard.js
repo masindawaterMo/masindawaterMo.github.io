@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./UpgradeItemCard.module.css";
 import item from "../../../data/item";
 import attackSpeeds from "../../../data/attackSpeeds";
@@ -197,6 +197,33 @@ const UpgradeItemCard = ({ rankingList }) => {
     );
   };
 
+  function checkNickName(str) {
+    var sqlArray = new Array(
+      "SELECT",
+      "INSERT",
+      "DELETE",
+      "UPDATE",
+      "CREATE",
+      "DROP",
+      "EXEC",
+      "UNION",
+      "FETCH",
+      "DECLARE",
+      "TRUNCATE"
+    );
+
+    var regex;
+    for (var i = 0; i < sqlArray.length; i++) {
+      regex = new RegExp(sqlArray[i], "gi");
+
+      if (regex.test(str)) {
+        // alert("[" + sqlArray[i] + "]와(과)같은 특정문자로 검색할 수 없습니다.");
+        return false;
+      }
+    }
+    return true;
+  }
+
   const handleRankRegistration = async () => {
     if (remainingUpgrades > 0) {
       alert("업그레이드를 모두 사용해야 랭킹에 등록할 수 있습니다.");
@@ -209,6 +236,8 @@ const UpgradeItemCard = ({ rankingList }) => {
     if (lowestRank) {
       // 랭킹이 있을 경우
       if (rankingList.length < 5 || upgradeCount >= lowestRank.upgradeCount) {
+        if (!checkNickName(nickname)) return;
+
         await registerRank(); // 랭킹 등록 로직 호출
         alert("랭킹에 등록되었습니다!");
       } else {
@@ -220,6 +249,8 @@ const UpgradeItemCard = ({ rankingList }) => {
       }
     } else {
       // 랭킹이 없을 경우 무조건 등록 가능
+      if (!checkNickName(nickname)) return;
+
       await registerRank(); // 랭킹 등록 로직 호출
       alert("랭킹에 등록되었습니다!");
     }
@@ -241,6 +272,14 @@ const UpgradeItemCard = ({ rankingList }) => {
     }
   };
 
+  const checkSearchedWord = useCallback((event) => {
+    var expText = /[%=*><]/;
+    if (expText.test(event.key) == true) {
+      alert("보안: 특수문자(%,=,*,>,<)는 입력 할수 없습니다.");
+      event.preventDefault();
+    }
+  }, []);
+
   return (
     <div className={styles["div-flex"]}>
       <div className="center">{renderItem()}</div>
@@ -249,6 +288,8 @@ const UpgradeItemCard = ({ rankingList }) => {
         {remainingUpgrades === 0 && (
           <div className={styles["div-flex-row"]}>
             <input
+              maxlength="10"
+              onKeyDown={checkSearchedWord}
               className={styles["nickname-input"]}
               type="text"
               value={nickname}
