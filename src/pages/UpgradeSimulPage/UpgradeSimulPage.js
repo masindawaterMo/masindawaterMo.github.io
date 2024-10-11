@@ -112,7 +112,7 @@ const UpgradeSimulPage = () => {
             <h2>Q : 강화</h2>
             <h2>R : 리셋</h2>
           </div>
-          <UpgradeItemCard rankingList={rankingList} />
+          <UpgradeItemCard rankingList={todayRankingList} />
           <div className={styles["right"]}>
             <h1>일일 Top 10</h1>
             {loading ? (
