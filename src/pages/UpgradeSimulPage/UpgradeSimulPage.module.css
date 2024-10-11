@@ -21,14 +21,38 @@
 }
 
 .rank-ul {
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .rank-li {
   margin-top: 1rem;
 }
 
+.upgrade-container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 80%;
+  height: 60rem;
+  background-color: #171718;
+  padding: 4rem;
+  border-radius: 10px;
+}
+
 @media (max-width: 768px) {
+  .upgrade-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    margin: 0;
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    padding: 0rem;
+    border-radius: 0px;
+  }
+
   .card-center {
     display: flex;
     justify-content: center;
