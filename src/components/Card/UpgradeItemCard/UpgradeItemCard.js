@@ -297,7 +297,7 @@ const UpgradeItemCard = ({ rankingList }) => {
         {remainingUpgrades === 0 && (
           <div className={styles["div-flex-row"]}>
             <input
-              maxlength="10"
+              maxlength="11"
               onKeyDown={checkSearchedWord}
               className={styles["nickname-input"]}
               type="text"

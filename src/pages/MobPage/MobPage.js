@@ -18,9 +18,9 @@ const MobPage = () => {
     setSearchMobInput(searchValue);
 
     if (searchValue) {
-      const filtered = mob.filter((i) =>
-        i.이름.toLowerCase().startsWith(searchValue)
-      );
+      const filtered = mob.filter((i) => {
+        if (i.이름) return i.이름.toLowerCase().startsWith(searchValue);
+      });
       setFilteredMobs(filtered); // 필터링된 아이템 상태 업데이트
       setShowSuggestions(filtered.length > 0); // 필터링된 아이템이 있을 경우 추천 창 표시
     } else {
@@ -49,17 +49,27 @@ const MobPage = () => {
     let mobPartialMatch;
 
     if (selectedMob) {
-      mobExactMatch = mob.find((i) => i.이름 === selectedMob.이름);
-      mobPartialMatch = mob.find(
-        (i) =>
-          i.이름.indexOf(selectedMob.이름) !== -1 && i.이름 !== selectedMob.이름
-      );
+      mobExactMatch = mob.find((i) => {
+        if (i.이름) return i.이름 === selectedMob.이름;
+      });
+
+      mobPartialMatch = mob.find((i) => {
+        if (i.이름)
+          return (
+            i.이름.indexOf(selectedMob.이름) !== -1 &&
+            i.이름 !== selectedMob.이름
+          );
+      });
     } else {
-      mobExactMatch = mob.find((i) => i.이름 === searchMobInput);
-      mobPartialMatch = mob.find(
-        (i) =>
-          i.이름.indexOf(searchMobInput) !== -1 && i.이름 !== searchMobInput
-      );
+      mobExactMatch = mob.find((i) => {
+        if (i.이름) return i.이름 === searchMobInput;
+      });
+      mobPartialMatch = mob.find((i) => {
+        if (i.이름)
+          return (
+            i.이름.indexOf(searchMobInput) !== -1 && i.이름 !== searchMobInput
+          );
+      });
     }
 
     const foundMob = mobExactMatch || mobPartialMatch;
@@ -68,7 +78,9 @@ const MobPage = () => {
       return;
     }
 
-    const foundDropTable = mobDropTable.find((i) => i.이름 === foundMob.이름);
+    const foundDropTable = mobDropTable.find((i) => {
+      if (i.이름) return i.이름 === foundMob.이름;
+    });
 
     let dropsContent = ""; // dropsContent 초기화
 
