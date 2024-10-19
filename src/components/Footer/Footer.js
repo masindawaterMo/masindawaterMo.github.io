@@ -10,7 +10,7 @@ function Footer() {
       </div>
       <p>
         <span>Copyright 2024. 모(masindawater). All Rights Reserved.</span>
-        <span className="footer-span">helper : 울라리</span>
+        <span className="footer-span">Helper : 울라리</span>
       </p>
     </footer>
   );

@@ -4,6 +4,7 @@ import item from "../../../data/item";
 import attackSpeeds from "../../../data/attackSpeeds";
 import weaponTypes from "../../../data/weaponTypes";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import badWords from "../../../data/badWords";
 
 const UpgradeItemCard = ({ rankingList }) => {
   const [remainingUpgrades, setRemainingUpgrades] = useState(15);
@@ -11,6 +12,7 @@ const UpgradeItemCard = ({ rankingList }) => {
   const [upgradeCount, setUpgradeCount] = useState(0);
   const [itemResult, setItemResult] = useState(null); // itemResult를 상태로 저장
   const [nickname, setNickname] = useState(""); // 닉네임 상태
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
     const foundItem = item.find((i) => i.이름 === "흑갑충");
@@ -197,6 +199,17 @@ const UpgradeItemCard = ({ rankingList }) => {
     );
   };
 
+  // 비속어를 "어머"로 대체하는 함수
+  const replaceBadWords = (text) => {
+    let sanitizedText = text;
+    badWords.forEach((obj) => {
+      const word = obj.badWords;
+      const regex = new RegExp(`${word}`, "gi");
+      sanitizedText = sanitizedText.replace(regex, "어머"); // 비속어를 "어머"로 대체
+    });
+    return sanitizedText;
+  };
+
   function checkNickName(str) {
     var sqlArray = new Array(
       "SELECT",
@@ -230,8 +243,18 @@ const UpgradeItemCard = ({ rankingList }) => {
       return;
     }
 
+    if (isButtonDisabled) return;
+
     // 현재 랭킹 확인
     const lowestRank = rankingList[rankingList.length - 1];
+
+    // 버튼 비활성화
+    setIsButtonDisabled(true);
+
+    // 1초 후 버튼 다시 활성화
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 1000);
 
     if (lowestRank) {
       // 랭킹이 있을 경우
@@ -260,7 +283,7 @@ const UpgradeItemCard = ({ rankingList }) => {
     // 랭킹 등록
     const db = getFirestore();
     const newRanking = {
-      nickname: nickname,
+      nickname: replaceBadWords(nickname),
       upgradeCount: upgradeCount,
       timestamp: new Date(), // 현재 시간 등록
     };
@@ -308,7 +331,7 @@ const UpgradeItemCard = ({ rankingList }) => {
             <button
               className={styles["rank-button"]}
               onClick={handleRankRegistration}
-              disabled={!nickname}
+              disabled={!nickname || isButtonDisabled}
             >
               등록
             </button>
