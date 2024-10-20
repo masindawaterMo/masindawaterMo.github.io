@@ -262,7 +262,6 @@ const UpgradeItemCard = ({ rankingList }) => {
         if (!checkNickName(nickname)) return;
 
         await registerRank(); // 랭킹 등록 로직 호출
-        alert("랭킹에 등록되었습니다!");
       } else {
         alert(
           "랭킹 등록 기준을 충족하지 못했습니다. 최소 " +

@@ -1434,5 +1434,10 @@ const badWords = [
   { badWords: "십자석" },
   { badWords: "흐졉" },
   { badWords: "좆털" },
-];;
+  { badWords: "벼엉신" },
+  { badWords: "섹" },
+  { badWords: "장애인" },
+  { badWords: "틱장애" },
+  { badWords: "장애" },
+];
 export default badWords;

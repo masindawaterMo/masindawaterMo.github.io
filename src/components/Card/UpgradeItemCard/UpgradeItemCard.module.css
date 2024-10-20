@@ -89,3 +89,19 @@
     background-color: #4caf50;
   }
 }
+
+@media (max-width: 1920px) {
+  .div-flex {
+    font-size: small;
+  }
+
+  .nickname-input[type="text"] {
+    width: 10rem;
+    height: 40px;
+    margin-right: 1rem;
+  }
+
+  .rank-button {
+    font-size: 13px;
+  }
+}

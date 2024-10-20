@@ -16,15 +16,16 @@
 
 body {
   font-family: "BMJUA";
-}
-
-body {
   background-color: #131313;
 }
 
 html,
 body {
   height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
@@ -40,4 +41,129 @@ h2 {
 p {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
+}
+
+label {
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 10px 5px 0;
+}
+
+input[type="text"] {
+  width: 20rem;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #555;
+  color: white;
+}
+
+label,
+input[type="text"] {
+  vertical-align: middle;
+}
+
+button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 12px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+#result,
+#result2,
+#result3 {
+  margin: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.single-line {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+.result-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
+
+.result-data {
+  font-size: 14px;
+  color: #555;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  font-size: 1rem;
+  border-radius: 1rem;
+  width: 26rem;
+}
+
+#wrap {
+  min-height: 50vh;
+  position: relative;
+  width: 100%;
+}
+
+@media (min-width: 1921px) {
+  #wrap {
+    min-height: 85vh; /* UHD (4K) 화면에서 조금 더 높게 설정 */
+  }
+}
+
+@media (min-width: 1080px) and (max-width: 1920px) {
+  #wrap {
+    min-height: 80vh; /* FHD 화면에서 적절한 높이 */
+  }
+  p {
+    font-size: 13px;
+  }
+  li {
+    font-size: 20px;
+  }
+  li {
+    font-size: 20px;
+  }
+  span {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 1079px) {
+  #wrap {
+    min-height: 65vh; /* 더 작은 화면에서는 높이를 줄임 */
+  }
+}
+
+.big-img {
+  height: 80px;
+  max-width: 80%;
+  display: block;
+  /* 블록 요소로 설정 */
+  margin: 0 auto;
+  /* 좌우 여백을 자동으로 설정 */
+}
+
+h2 {
+  text-align: center;
+  /* 중앙 정렬 */
+}
+
+p {
+  margin-top: 5px;
 }

@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Main from "../../pages/mainPage/MainPage";
 import Nav from "../Nav/Nav";
 import Footer from "../Footer/Footer";
 import Home from "../../pages/Home/Home";
@@ -30,4 +29,3 @@ function App() {
 }
 
 export default App;
-
