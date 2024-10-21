@@ -1439,5 +1439,6 @@ const badWords = [
   { badWords: "장애인" },
   { badWords: "틱장애" },
   { badWords: "장애" },
+  { badWords: "cex" },
 ];
 export default badWords;

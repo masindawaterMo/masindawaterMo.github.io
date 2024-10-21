@@ -274,7 +274,6 @@ const UpgradeItemCard = ({ rankingList }) => {
       if (!checkNickName(nickname)) return;
 
       await registerRank(); // 랭킹 등록 로직 호출
-      alert("랭킹에 등록되었습니다!");
     }
   };
 
