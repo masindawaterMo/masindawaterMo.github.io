@@ -15,7 +15,7 @@ const UpgradeItemCard = ({ rankingList }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   useEffect(() => {
-    const foundItem = item.find((i) => i.이름 === "흑갑충");
+    const foundItem = item.find((i) => i.이름 === "라 투핸더");
     setItemResult(foundItem); // itemResult를 상태로 설정
   }, [itemResult]);
 
