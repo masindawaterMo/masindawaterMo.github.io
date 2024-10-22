@@ -4,7 +4,7 @@
   justify-content: center;
 }
 
-.raw {
+.row {
   display: flex;
   justify-content: left;
   flex-wrap: wrap;
@@ -15,14 +15,12 @@
   .container {
     width: auto;
     display: flex;
-    align-items: center;
     justify-content: center;
   }
 
-  .raw {
+  .row {
     display: flex;
-    justify-content: left;
-    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
     max-width: 88rem;
   }
