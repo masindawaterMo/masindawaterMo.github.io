@@ -167,3 +167,16 @@ h2 {
 p {
   margin-top: 5px;
 }
+
+.container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.raw {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  max-width: 88rem;
+}

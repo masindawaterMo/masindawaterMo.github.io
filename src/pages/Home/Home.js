@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import ItemCard from "../../components/Card/ItemCard/ItemCard";
 import item from "../../data/item";
-import "./Home.css";
 import ItemFilter from "../../components/ItemFilter/ItemFilter";
+import styles from "./Home.module.css";
 
 const Home = () => {
   const [filteredItems, setFilteredItems] = useState(() => {
@@ -47,12 +47,12 @@ const Home = () => {
   return (
     <div id="wrap">
       <h1>Maple History Mo</h1>
-      <div className="container">
+      <div className={styles["container"]}>
         <ItemFilter setFilteredItems={setFilteredItems} />
       </div>
 
-      <div className="container">
-        <div className="raw">
+      <div className={styles["container"]}>
+        <div className={styles["row"]}>
           {filteredItems.slice(0, itemsToShow).map((filteredItem, i) => {
             return (
               <ItemCard item={filteredItem} i={i} key={filteredItem.코드} />

@@ -1,0 +1,29 @@
+.container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.raw {
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
+  max-width: 88rem;
+}
+
+@media (max-width: 703px) {
+  .container {
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .raw {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 88rem;
+  }
+}
