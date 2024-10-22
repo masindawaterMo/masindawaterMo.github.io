@@ -1,0 +1,98 @@
+.mob-detail-card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 2rem;
+  padding: 1rem;
+}
+
+.mob-detail-img {
+  max-height: 10rem;
+}
+
+.item-detail-img {
+  height: 4rem;
+  width: 4rem;
+  margin-bottom: 1rem;
+}
+
+.mob-detail-card-row1 {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-color-pink {
+  color: pink;
+}
+
+.radius-container-box {
+  border-radius: 15px;
+  background-color: #272727;
+  padding: 1rem;
+  margin: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.radius-small-box {
+  border-radius: 15px;
+  padding: 12px;
+  margin: 1rem;
+  text-align: center;
+  width: 8rem;
+}
+
+.flex-row {
+  margin: 0;
+  padding: 0;
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  text-align: start;
+}
+
+.red {
+  background-color: #d1010a;
+}
+
+.light-green {
+  background-color: #54b528;
+}
+
+.yellow {
+  background-color: #e4b227;
+}
+
+.pink {
+  background-color: #ba72c9;
+}
+
+.mob-detail-card-row2 {
+  width: 70rem;
+  display: flex; /* 수평으로 나열 */
+  flex-direction: row; /* 세로 방향으로 정렬 */
+  gap: 10px; /* 카드 사이의 간격 */
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: #1e1e1e;
+  width: 17rem;
+  height: 10rem;
+  border: 1px solid #ccc; /* 테두리 */
+  border-radius: 8px; /* 둥근 모서리 */
+  padding: 10px; /* 내부 여백 */
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}

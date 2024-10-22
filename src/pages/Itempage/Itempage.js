@@ -18,7 +18,6 @@ const ItemPage = () => {
     const foundItem = item.find((i) => i.코드 == itemId);
 
     if (!foundItem) {
-      console.log(itemId);
       alert("해당 아이템을 찾을 수 없습니다.");
       return;
     }

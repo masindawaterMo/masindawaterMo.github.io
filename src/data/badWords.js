@@ -1440,5 +1440,9 @@ const badWords = [
   { badWords: "틱장애" },
   { badWords: "장애" },
   { badWords: "cex" },
+  { badWords: "S.E.X" },
+  { badWords: "C.E.X" },
+  { badWords: "s.e.x" },
+  { badWords: "c.e.x" },
 ];
 export default badWords;
