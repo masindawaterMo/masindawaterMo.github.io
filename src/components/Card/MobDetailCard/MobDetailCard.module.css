@@ -13,6 +13,18 @@
   height: 9rem;
 }
 
+.mob-detail-card-item-card-button {
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+  height: fit-content;
+  background-color: transparent;
+}
+
+.mob-detail-card-item-card-button:hover {
+  background-color: transparent;
+}
+
 .mob-detail-img {
   height: 7rem;
   width: 7rem;

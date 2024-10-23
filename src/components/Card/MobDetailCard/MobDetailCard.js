@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./MobDetailCard.module.css";
 import mobDropTable from "../../../data/mobDropTable";
 import item from "../../../data/item";
@@ -7,6 +8,7 @@ const MobDetailCard = ({ mobResult }) => {
   const [errorCount, setErrorCount] = useState(0);
   const errorCountRef = useRef(errorCount); // 최신 상태를 추적하기 위한 useRef
   const [drops, setDrops] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (mobResult) {
@@ -143,6 +145,11 @@ const MobDetailCard = ({ mobResult }) => {
       : "https://maplestory.io/api/kms/284/item/4001102/icon?resize=1";
   }
 
+  const handleItemClick = (itemName) => {
+    const thisItem = item.find((i) => i.이름 === itemName);
+    if (thisItem) navigate(`/item/${thisItem.코드}`); // 아이템 ID를 URL로 전달
+  };
+
   return (
     <div className={styles["mob-detail-card-container"]}>
       <div className={styles["mob-detail-card-row1"]}>
@@ -193,13 +200,18 @@ const MobDetailCard = ({ mobResult }) => {
 
       <div className={styles["mob-detail-card-row2"]}>
         {drops.split("/").map((drop, index) => (
-          <div className={styles.card} key={index}>
-            <img
-              className={styles["item-detail-img"]}
-              src={itemImg(drop.split("(")[0].trim())}
-            ></img>
-            <label>{drop}</label>
-          </div>
+          <button
+            className={styles["mob-detail-card-item-card-button"]}
+            onClick={() => handleItemClick(drop.split("(")[0].trim())} // 클릭 이벤트 추가
+          >
+            <div className={styles.card} key={index}>
+              <img
+                className={styles["item-detail-img"]}
+                src={itemImg(drop.split("(")[0].trim())}
+              ></img>
+              <label>{drop}</label>
+            </div>
+          </button>
         ))}
 
         {mobResult.주문서 &&
