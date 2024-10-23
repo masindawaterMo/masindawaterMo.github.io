@@ -166,22 +166,22 @@ const MobDetailCard = ({ mobResult }) => {
         {addField("LV", mobResult.레벨, ["center"])}
         <div className={styles["radius-container-box"]}>
           <div className={styles["flex-row"]}>
-            {addField("HP", mobResult.HP.toLocaleString(), [
-              "radius-small-box",
-              "red",
-            ])}
-            {addField("EXP", mobResult.경험치.toLocaleString(), [
-              "radius-small-box",
-              "light-green",
-            ])}
-            {addField("공격력", mobResult.공격력.toLocaleString(), [
-              "radius-small-box",
-              "yellow",
-            ])}
-            {addField("회피율", mobResult.회피율.toLocaleString(), [
-              "radius-small-box",
-              "pink",
-            ])}
+            {addField(
+              "HP",
+              mobResult.HP ? mobResult.HP.toLocaleString() : "제보 ㄱ",
+              ["radius-small-box", "red"]
+            )}
+            {addField(
+              "EXP",
+              mobResult.경험치 ? mobResult.경험치.toLocaleString() : "제보 ㄱ",
+              ["radius-small-box", "light-green"]
+            )}
+            {addField(
+              "공격력",
+              mobResult.공격력 ? mobResult.공격력.toLocaleString() : "제보 ㄱ",
+              ["radius-small-box", "yellow"]
+            )}
+            {addField("회피율", mobResult.회피율, ["radius-small-box", "pink"])}
           </div>
         </div>
         <div className={styles["radius-container-box"]}>
@@ -194,7 +194,10 @@ const MobDetailCard = ({ mobResult }) => {
           <br></br>
 
           {addMopType(mobResult)}
-          <label>메소: {mobResult["메소"].toLocaleString()}</label>
+          <label>
+            메소:{" "}
+            {mobResult["메소"] ? mobResult["메소"].toLocaleString() : "제보 ㄱ"}
+          </label>
         </div>
       </div>
 
