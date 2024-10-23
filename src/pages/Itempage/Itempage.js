@@ -4,7 +4,7 @@ import mobDropTable from "../../data/mobDropTable";
 import attackSpeeds from "../../data/attackSpeeds";
 import weaponTypes from "../../data/weaponTypes";
 import "./ItemPage.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const ItemPage = () => {
   const [searchItemInput, setSearchItemInput] = useState("");
@@ -12,6 +12,7 @@ const ItemPage = () => {
   const [filteredItems, setFilteredItems] = useState([]); // 추천 검색어 상태
   const [showSuggestions, setShowSuggestions] = useState(false); // 추천 검색어 창 표시 여부
   const { itemId } = useParams(); // URL에서 아이템 ID 가져오기
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (itemId == undefined) return;
@@ -99,26 +100,29 @@ const ItemPage = () => {
     if (!foundItem) {
       alert("해당 아이템을 찾을 수 없습니다.");
       return;
+    } else {
+      navigate(`/item/${foundItem.코드}`);
+      return;
     }
 
-    const foundMobs = new Set();
-    mobDropTable.forEach((mob) => {
-      if (Object.values(mob).some((drop) => drop === foundItem.이름)) {
-        foundMobs.add(mob);
-      }
-    });
+    // const foundMobs = new Set();
+    // mobDropTable.forEach((mob) => {
+    //   if (Object.values(mob).some((drop) => drop === foundItem.이름)) {
+    //     foundMobs.add(mob);
+    //   }
+    // });
 
-    let itemDropMobs = " 해당 아이템을 드랍하는 몬스터가 없습니다.";
-    if (foundMobs.size > 0) {
-      itemDropMobs = Array.from(foundMobs)
-        .map((mob) => `[${mob.이름}]`)
-        .join(", ");
-    }
+    // let itemDropMobs = " 해당 아이템을 드랍하는 몬스터가 없습니다.";
+    // if (foundMobs.size > 0) {
+    //   itemDropMobs = Array.from(foundMobs)
+    //     .map((mob) => `[${mob.이름}]`)
+    //     .join(", ");
+    // }
 
-    setItemResult({
-      ...foundItem,
-      itemDropMobs,
-    });
+    // setItemResult({
+    //   ...foundItem,
+    //   itemDropMobs,
+    // });
   };
 
   const addItemResult = (label, value) => {

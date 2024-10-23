@@ -6,8 +6,16 @@
   padding: 1rem;
 }
 
+.mob-detail-img-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 9rem;
+}
+
 .mob-detail-img {
-  max-height: 10rem;
+  height: 7rem;
+  width: 7rem;
 }
 
 .item-detail-img {

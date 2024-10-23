@@ -1,0 +1,13 @@
+.container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 88rem;
+}

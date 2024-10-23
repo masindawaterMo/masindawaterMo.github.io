@@ -146,7 +146,7 @@ const MobDetailCard = ({ mobResult }) => {
   return (
     <div className={styles["mob-detail-card-container"]}>
       <div className={styles["mob-detail-card-row1"]}>
-        <div className="center">
+        <div className={styles["mob-detail-img-container"]}>
           <img
             src={`https://maplestory.io/api/kms/284/mob/animated/${mobResult.mobCode}/move`}
             alt="Mob"
@@ -154,6 +154,7 @@ const MobDetailCard = ({ mobResult }) => {
             className={styles["mob-detail-img"]}
           />
         </div>
+
         <h2>{mobResult.이름}</h2>
         {addField("LV", mobResult.레벨, ["center"])}
         <div className={styles["radius-container-box"]}>
@@ -200,15 +201,19 @@ const MobDetailCard = ({ mobResult }) => {
             <label>{drop}</label>
           </div>
         ))}
-        {mobResult.주문서.split("/").map((scroll, index) => (
-          <div className={styles["card"]} key={index}>
-            <img
-              className={styles["item-detail-img"]}
-              src="https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=2"
-            ></img>
-            <label>{scroll}</label>
-          </div>
-        ))}
+
+        {mobResult.주문서 &&
+          mobResult.주문서.trim() !== "" &&
+          mobResult.주문서.split("/").map((scroll, index) => (
+            <div className={styles["card"]} key={index}>
+              <img
+                className={styles["item-detail-img"]}
+                src="https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=2"
+                alt={scroll}
+              />
+              <label>{scroll}</label>
+            </div>
+          ))}
       </div>
     </div>
   );

@@ -1,0 +1,51 @@
+.mob-card {
+  background-color: #27272a;
+
+  margin-bottom: 20px;
+  padding: 5px;
+}
+
+.mob-image {
+  padding: 5%;
+  max-height: 70px;
+  max-width: 70px;
+}
+
+.mob-image-container {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.mob-text {
+  color: white;
+  display: flex;
+  font-family: BMJUA;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: center;
+}
+
+.mob-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mob-card-button:hover {
+  background-color: rgb(77, 77, 77);
+}
+
+.mob-card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 20rem;
+  margin: 1rem;
+  background-color: #27272a;
+  border-radius: 10px;
+  align-items: center;
+}
