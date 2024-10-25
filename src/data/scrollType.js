@@ -47,6 +47,9 @@ const scrollType = {
 
   혼돈: "혼돈의 주문서",
   백: "백의 주문서",
+
+  X: "X",
+  x: "X",
 };
 
 export default scrollType;

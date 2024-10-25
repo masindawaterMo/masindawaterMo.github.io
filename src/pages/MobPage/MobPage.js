@@ -33,6 +33,7 @@ const MobPage = () => {
       return;
     }
 
+    setSearchMobInput(foundMob.이름);
     setMobResult({ ...foundMob });
     setIsLoading(false); // 로딩 종료
   }, [mobName]); // mobName이 변경될 때마다 실행
@@ -71,16 +72,18 @@ const MobPage = () => {
     if (selectedMob) {
       foundMob = mobInfo.find((i) => i.이름 === selectedMob.이름);
     } else {
-      foundMob = mobInfo.filter((i) =>
-        i.이름 && i.이름.startsWith(searchMobInput) ? i : null
-      );
+      // 현재 searchMobInput으로 시작하는 몬스터 찾기
+      foundMob = mobInfo.filter(
+        (i) => i.이름 && i.이름.startsWith(searchMobInput)
+      )[0];
     }
 
-    if (!foundMob) {
+    // foundMob의 길이를 확인하여 에러 방지
+    if (foundMob.length === 0) {
       alert("해당 몬스터를 찾을 수 없습니다.");
       return;
     } else {
-      navigate(`/mob/${foundMob[0].이름}`);
+      navigate(`/mob/${foundMob.이름}`); // 첫 번째 몬스터로 이동
     }
   };
 
