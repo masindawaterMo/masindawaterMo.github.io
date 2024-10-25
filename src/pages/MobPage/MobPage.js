@@ -8,35 +8,35 @@ import MobCard from "../../components/Card/MobCard/MobCard";
 const MobPage = () => {
   const [searchMobInput, setSearchMobInput] = useState("");
   const [mobResult, setMobResult] = useState(null);
-  const [filteredMobs, setFilteredMobs] = useState([]); // 추천 검색어 상태
-  const [showSuggestions, setShowSuggestions] = useState(false); // 추천 검색어 창 표시 여부
-  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
-  const { mobName } = useParams(); // URL에서 몬스터 이름 가져오기
+  const [filteredMobs, setFilteredMobs] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [visibleCount, setVisibleCount] = useState(20); // 한 번에 렌더링할 몬스터 수
+  const { mobName } = useParams();
   const navigate = useNavigate();
 
-  // mobName 변경 시에 따라 mobResult 상태를 업데이트
+  // mobName 변경 시 mobResult 상태 업데이트
   useEffect(() => {
     if (!mobName) {
-      // URL에 mobName이 없으면 mobResult를 초기화
       setMobResult(null);
-      setIsLoading(false); // 로딩 종료
+      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true); // 로딩 시작
+    setIsLoading(true);
 
     const foundMob = mobInfo.find((i) => i.이름 === mobName);
 
     if (!foundMob) {
       alert("해당 몬스터를 찾을 수 없습니다.");
-      setIsLoading(false); // 로딩 종료
+      setIsLoading(false);
       return;
     }
 
     setSearchMobInput(foundMob.이름);
     setMobResult({ ...foundMob });
-    setIsLoading(false); // 로딩 종료
-  }, [mobName]); // mobName이 변경될 때마다 실행
+    setIsLoading(false);
+  }, [mobName]);
 
   // 검색어 입력 시 실행되는 함수
   const handleSearch = (e) => {
@@ -44,25 +44,25 @@ const MobPage = () => {
     setSearchMobInput(searchValue);
 
     if (searchValue) {
-      const filtered = mobInfo.filter((i) => {
-        if (i.이름) return i.이름.toLowerCase().startsWith(searchValue);
-      });
-      setFilteredMobs(filtered); // 필터링된 몬스터 상태 업데이트
-      setShowSuggestions(filtered.length > 0); // 필터링된 몬스터가 있을 경우 추천 창 표시
+      const filtered = mobInfo.filter((i) =>
+        i.이름.toLowerCase().startsWith(searchValue)
+      );
+      setFilteredMobs(filtered);
+      setShowSuggestions(filtered.length > 0);
     } else {
-      setShowSuggestions(false); // 검색어가 없을 경우 추천 창 숨김
+      setShowSuggestions(false);
     }
   };
 
   const handleSuggestionClick = (selectedMob) => {
-    setSearchMobInput(selectedMob.이름); // 선택된 추천어를 검색어로 설정
-    searchMob(selectedMob); // 선택된 몬스터로 검색 실행
-    closeSuggestions(); // 추천 창 닫기
+    setSearchMobInput(selectedMob.이름);
+    searchMob(selectedMob);
+    closeSuggestions();
   };
 
   const closeSuggestions = () => {
-    setFilteredMobs([]); // 추천어 리스트 비우기
-    setShowSuggestions(false); // 추천 창 숨기기
+    setFilteredMobs([]);
+    setShowSuggestions(false);
   };
 
   const searchMob = (selectedMob) => {
@@ -72,18 +72,16 @@ const MobPage = () => {
     if (selectedMob) {
       foundMob = mobInfo.find((i) => i.이름 === selectedMob.이름);
     } else {
-      // 현재 searchMobInput으로 시작하는 몬스터 찾기
       foundMob = mobInfo.filter(
         (i) => i.이름 && i.이름.startsWith(searchMobInput)
       )[0];
     }
 
-    // foundMob의 길이를 확인하여 에러 방지
-    if (foundMob.length === 0) {
+    if (!foundMob) {
       alert("해당 몬스터를 찾을 수 없습니다.");
       return;
     } else {
-      navigate(`/mob/${foundMob.이름}`); // 첫 번째 몬스터로 이동
+      navigate(`/mob/${foundMob.이름}`);
     }
   };
 
@@ -93,9 +91,24 @@ const MobPage = () => {
     }
   };
 
-  // 로딩 상태에 따라 렌더링
+  // 스크롤이 하단에 도달했을 때 더 많은 MobCard를 로드하는 함수
+  const handleScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >=
+      document.documentElement.scrollHeight
+    ) {
+      setVisibleCount((prevCount) => prevCount + 20); // 한 번에 20개씩 추가 로드
+    }
+  };
+
+  // 무한 스크롤 이벤트 추가
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   if (isLoading) {
-    return <div>로딩 중...</div>; // 로딩 중 표시
+    return <div>로딩 중...</div>;
   }
 
   return (
@@ -138,11 +151,11 @@ const MobPage = () => {
         <MobDetailCard mobResult={mobResult} />
       ) : (
         <div className={styles["container"]}>
-          {/* 몬스터 이름이 없을 때만 MobCard 목록을 표시 */}
           <div className={styles["row"]}>
             {mobInfo
-              .filter((mob) => mob.이름 && mob.레벨 && mob.HP) // 이름과 레벨이 있는 몬스터만 필터링
-              .sort((a, b) => a.레벨 - b.레벨) // 레벨 기준으로 정렬
+              .filter((mob) => mob.이름 && mob.레벨 && mob.HP)
+              .sort((a, b) => a.레벨 - b.레벨)
+              .slice(0, visibleCount) // visibleCount까지의 몬스터만 표시
               .map((mob, i) => (
                 <MobCard mob={mob} i={i} key={mob.이름} />
               ))}

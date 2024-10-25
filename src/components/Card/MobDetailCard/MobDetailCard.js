@@ -57,6 +57,8 @@ const MobDetailCard = ({ mobResult }) => {
     } else if (errorCountRef.current === 2) {
       e.target.src = `https://maplestory.io/api/TMS/209/mob/animated/${mobResult.mobCode}/move`;
     } else if (errorCountRef.current === 3) {
+      e.target.src = `https://maplestory.io/api/JMS/419/mob/animated/${mobResult.mobCode}/move`;
+    } else if (errorCountRef.current === 4) {
       e.target.src = `https://maplestory.io/api/TMS/209/mob/${mobResult.mobCode}/icon?resize=2`;
     } else {
       e.target.onerror = null;
