@@ -647,7 +647,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 62500,
-    imgCode: 0,
+    imgCode: 1302190,
   },
   {
     코드: 26,
@@ -1011,7 +1011,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2073600,
-    imgCode: 0,
+    imgCode: 1302081,
   },
   {
     코드: 40,
@@ -1037,7 +1037,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2073600,
-    imgCode: 0,
+    imgCode: 1302200,
   },
   {
     코드: 41,
@@ -1063,7 +1063,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2856100,
-    imgCode: 0,
+    imgCode: 1302193,
   },
   {
     코드: 42,
@@ -1869,7 +1869,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2073600,
-    imgCode: 0,
+    imgCode: 1402046,
   },
   {
     코드: 73,
@@ -1895,7 +1895,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2073600,
-    imgCode: 0,
+    imgCode: 1402138,
   },
   {
     코드: 74,
@@ -1921,7 +1921,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2856100,
-    imgCode: 0,
+    imgCode: 1402091,
   },
   {
     코드: 75,
@@ -2649,7 +2649,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2073600,
-    imgCode: 0,
+    imgCode: 1312038,
   },
   {
     코드: 103,
@@ -2675,7 +2675,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2073600,
-    imgCode: 0,
+    imgCode: 1312106,
   },
   {
     코드: 104,
@@ -2701,7 +2701,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 2856100,
-    imgCode: 0,
+    imgCode: 1312095,
   },
   {
     코드: 105,
@@ -2753,7 +2753,7 @@ const item = [
     INT: 0,
     LUK: 0,
     판매비용: 5062500,
-    imgCode: 0,
+    imgCode: 1312065,
   },
   {
     코드: 107,
