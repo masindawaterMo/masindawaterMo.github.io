@@ -235,7 +235,13 @@ const MobDetailCard = ({ mobResult }) => {
             <div className={styles["card"]} key={index}>
               <img
                 className={styles["item-detail-img"]}
-                src="https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=8"
+                src={
+                  scrollType[scroll] === "혼돈의 주문서"
+                    ? "https://maplestory.io/api/GMS/210.1.1/item/2049100/icon?resize=8" // 혼돈의 주문서 이미지 URL
+                    : scrollType[scroll] === "백의 주문서"
+                    ? "https://maplestory.io/api/JMS/419/item/2340000/icon?resize=8" // 백의 주문서 이미지 URL
+                    : "https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=8" // 기본 이미지
+                }
                 alt={scrollType[scroll]}
               />
               <label>{scrollType[scroll]}</label>

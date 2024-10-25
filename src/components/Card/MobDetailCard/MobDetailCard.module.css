@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: flex-start;
   margin: 2rem;
   padding: 1rem;
 }
@@ -97,10 +98,10 @@
 }
 
 .mob-detail-card-row2 {
-  width: 70rem;
+  width: 74rem;
   display: flex; /* 수평으로 나열 */
   flex-direction: row; /* 세로 방향으로 정렬 */
-  gap: 20px; /* 카드 사이의 간격 */
+  gap: 5px; /* 카드 사이의 간격 */
   flex-wrap: wrap;
 }
 
