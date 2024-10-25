@@ -1,3 +1,17 @@
 .p {
   margin: 2rem;
 }
+
+.scroll-page-container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.scroll-page-container-row {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 88rem;
+}

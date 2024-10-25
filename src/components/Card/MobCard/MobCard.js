@@ -50,8 +50,8 @@ const MobCard = (props) => {
       </div>
 
       <div className="mob-text">
-        <label>LV {props.mob["레벨"]}</label>
-        <label>HP {props.mob["HP"]}</label>
+        <label className="mob-text-label">LV {props.mob["레벨"]}</label>
+        <label className="mob-text-label">HP {props.mob["HP"]}</label>
       </div>
     </button>
   );

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./MobDetailCard.module.css";
 import mobDropTable from "../../../data/mobDropTable";
 import item from "../../../data/item";
+import scrollType from "../../../data/scrollType";
 
 const MobDetailCard = ({ mobResult }) => {
   const [errorCount, setErrorCount] = useState(0);
@@ -141,8 +142,8 @@ const MobDetailCard = ({ mobResult }) => {
     const thisItem = item.find((i) => i.이름 === itemName);
 
     return thisItem && thisItem.imgCode != 0
-      ? `https://maplestory.io/api/kms/284/item/${thisItem.imgCode}/icon?resize=1`
-      : "https://maplestory.io/api/kms/284/item/4001102/icon?resize=1";
+      ? `https://maplestory.io/api/kms/284/item/${thisItem.imgCode}/icon?resize=4`
+      : "https://maplestory.io/api/kms/284/item/4001102/icon?resize=4";
   }
 
   const handleItemClick = (itemName) => {
@@ -168,17 +169,21 @@ const MobDetailCard = ({ mobResult }) => {
           <div className={styles["flex-row"]}>
             {addField(
               "HP",
-              mobResult.HP ? mobResult.HP.toLocaleString() : "제보 ㄱ",
+              mobResult.HP ? mobResult.HP.toLocaleString() : "제보 바람",
               ["radius-small-box", "red"]
             )}
             {addField(
               "EXP",
-              mobResult.경험치 ? mobResult.경험치.toLocaleString() : "제보 ㄱ",
+              mobResult.경험치
+                ? mobResult.경험치.toLocaleString()
+                : "제보 바람",
               ["radius-small-box", "light-green"]
             )}
             {addField(
               "공격력",
-              mobResult.공격력 ? mobResult.공격력.toLocaleString() : "제보 ㄱ",
+              mobResult.공격력
+                ? mobResult.공격력.toLocaleString()
+                : "제보 바람",
               ["radius-small-box", "yellow"]
             )}
             {addField("회피율", mobResult.회피율, ["radius-small-box", "pink"])}
@@ -196,7 +201,9 @@ const MobDetailCard = ({ mobResult }) => {
           {addMopType(mobResult)}
           <label>
             메소:{" "}
-            {mobResult["메소"] ? mobResult["메소"].toLocaleString() : "제보 ㄱ"}
+            {mobResult["메소"]
+              ? mobResult["메소"].toLocaleString()
+              : "제보 바람"}
           </label>
         </div>
       </div>
@@ -212,7 +219,12 @@ const MobDetailCard = ({ mobResult }) => {
                 className={styles["item-detail-img"]}
                 src={itemImg(drop.split("(")[0].trim())}
               ></img>
-              <label>{drop}</label>
+              <label>{drop.split("(")[0]}</label>
+              <label>
+                {drop.split("(")[1]
+                  ? `(${drop.split("(")[1].slice(0, -1)})`
+                  : ""}
+              </label>
             </div>
           </button>
         ))}
@@ -223,10 +235,10 @@ const MobDetailCard = ({ mobResult }) => {
             <div className={styles["card"]} key={index}>
               <img
                 className={styles["item-detail-img"]}
-                src="https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=2"
-                alt={scroll}
+                src="https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=8"
+                alt={scrollType[scroll]}
               />
-              <label>{scroll}</label>
+              <label>{scrollType[scroll]}</label>
             </div>
           ))}
       </div>

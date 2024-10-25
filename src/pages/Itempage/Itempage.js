@@ -1,10 +1,9 @@
 import item from "../../data/item";
 import React, { useState, useEffect } from "react";
 import mobDropTable from "../../data/mobDropTable";
-import attackSpeeds from "../../data/attackSpeeds";
-import weaponTypes from "../../data/weaponTypes";
 import "./ItemPage.css";
 import { useParams, useNavigate } from "react-router-dom";
+import ItemDetailCard from "../../components/Card/ItemDetailCard/ItemDetailCard";
 
 const ItemPage = () => {
   const [searchItemInput, setSearchItemInput] = useState("");
@@ -125,66 +124,6 @@ const ItemPage = () => {
     // });
   };
 
-  const addItemResult = (label, value) => {
-    if (value == undefined || value == 0) return "";
-
-    return (
-      <p>
-        {label}: {value}
-      </p>
-    );
-  };
-
-  const renderItem = () => {
-    if (!itemResult) return null;
-
-    return (
-      <div className="item-detail-card-container">
-        <div className="center">
-          <img
-            className="item-detail-card-img"
-            src={
-              itemResult.imgCode != 0
-                ? `https://maplestory.io/api/kms/284/item/${itemResult.imgCode}/icon?resize=2`
-                : "https://maplestory.io/api/kms/284/item/4001102/icon?resize=2"
-            }
-            alt="Item"
-          />
-        </div>
-        <h2>{itemResult.이름}</h2>
-        <p className="single-line"></p>
-
-        <p>LV: {itemResult["필요 레벨"]}</p>
-        <p>종류: {weaponTypes[itemResult.종류]}</p>
-        <p>직업: {itemResult.직업}</p>
-        <p className="single-line"></p>
-        <p>REQ STR: {itemResult.필요STR}</p>
-        <p>REQ DEX: {itemResult.필요DEX}</p>
-        <p>REQ INT: {itemResult.필요INT}</p>
-        <p>REQ LUK: {itemResult.필요LUK}</p>
-        <p className="single-line"></p>
-
-        {addItemResult("STR", itemResult.STR)}
-        {addItemResult("DEX", itemResult.DEX)}
-        {addItemResult("INT", itemResult.INT)}
-        {addItemResult("LUK", itemResult.LUK)}
-
-        {addItemResult("공격 속도", attackSpeeds[itemResult.공격속도])}
-        {addItemResult("공격력", itemResult.공격력)}
-        {addItemResult("마력", itemResult.마력)}
-        {addItemResult("HP", itemResult.HP)}
-        {addItemResult("MP", itemResult.MP)}
-        {addItemResult("명중률", itemResult.명중률)}
-        {addItemResult("회피율", itemResult.회피율)}
-        {addItemResult("이동 속도", itemResult.이동속도)}
-        <p className="single-line"></p>
-
-        <p>판매비용: {itemResult.판매비용.toLocaleString("ko-KR")}</p>
-        <p className="single-line"></p>
-        <p>드랍 몬스터: {itemResult.itemDropMobs}</p>
-      </div>
-    );
-  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -215,8 +154,8 @@ const ItemPage = () => {
                     className="suggestion-img"
                     src={
                       item.imgCode != 0
-                        ? `https://maplestory.io/api/kms/284/item/${item.imgCode}/icon?resize=1`
-                        : "https://maplestory.io/api/kms/284/item/4001102/icon?resize=1"
+                        ? `https://maplestory.io/api/kms/284/item/${item.imgCode}/icon?resize=2`
+                        : "https://maplestory.io/api/kms/284/item/4001102/icon?resize=2"
                     }
                     alt="icon"
                   />
@@ -228,7 +167,7 @@ const ItemPage = () => {
         </div>
       </div>
       <div className="container">
-        <div>{renderItem()}</div>
+        <div>{ItemDetailCard(itemResult)}</div>
       </div>
     </div>
   );

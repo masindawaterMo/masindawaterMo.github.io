@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 9rem;
+  /* max-height: 15rem; */
 }
 
 .mob-detail-card-item-card-button {
@@ -26,14 +26,15 @@
 }
 
 .mob-detail-img {
-  height: 7rem;
-  width: 7rem;
+  /* height: 7rem;
+  width: 7rem; */
 }
 
 .item-detail-img {
   height: 4rem;
   width: 4rem;
-  margin-bottom: 1rem;
+  margin: 1rem;
+  /* margin-bottom: 1rem; */
 }
 
 .text-color-pink {
@@ -51,7 +52,7 @@
 
 .radius-small-box {
   border-radius: 15px;
-  padding: 12px;
+  padding: 10px;
   margin: 1rem;
   text-align: center;
   width: 8rem;
@@ -99,22 +100,24 @@
   width: 70rem;
   display: flex; /* 수평으로 나열 */
   flex-direction: row; /* 세로 방향으로 정렬 */
-  gap: 10px; /* 카드 사이의 간격 */
+  gap: 20px; /* 카드 사이의 간격 */
   flex-wrap: wrap;
 }
 
 .card {
   background-color: #1e1e1e;
-  width: 17rem;
-  height: 10rem;
+  width: 13rem;
+  height: 12rem;
   border: 1px solid #ccc; /* 테두리 */
   border-radius: 8px; /* 둥근 모서리 */
-  padding: 10px; /* 내부 여백 */
+  font-family: "BMJUA";
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 2rem;
+  margin: 10px;
 }
 
 @media (max-width: 1694px) {

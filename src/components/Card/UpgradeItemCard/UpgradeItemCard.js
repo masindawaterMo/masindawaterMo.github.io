@@ -230,7 +230,6 @@ const UpgradeItemCard = ({ rankingList }) => {
       regex = new RegExp(sqlArray[i], "gi");
 
       if (regex.test(str)) {
-        // alert("[" + sqlArray[i] + "]와(과)같은 특정문자로 검색할 수 없습니다.");
         return false;
       }
     }
@@ -295,9 +294,9 @@ const UpgradeItemCard = ({ rankingList }) => {
   };
 
   const checkSearchedWord = useCallback((event) => {
-    var expText = /[%=*><]/;
+    var expText = /[^a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ\s]/;
     if (expText.test(event.key) == true) {
-      alert("보안: 특수문자(%,=,*,>,<)는 입력 할수 없습니다.");
+      alert("보안: 특수문자는 입력할 수 없습니다.");
       event.preventDefault();
     }
   }, []);

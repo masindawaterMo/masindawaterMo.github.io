@@ -10,6 +10,7 @@ const MobPage = () => {
   const [mobResult, setMobResult] = useState(null);
   const [filteredMobs, setFilteredMobs] = useState([]); // 추천 검색어 상태
   const [showSuggestions, setShowSuggestions] = useState(false); // 추천 검색어 창 표시 여부
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태
   const { mobName } = useParams(); // URL에서 몬스터 이름 가져오기
   const navigate = useNavigate();
 
@@ -18,20 +19,22 @@ const MobPage = () => {
     if (!mobName) {
       // URL에 mobName이 없으면 mobResult를 초기화
       setMobResult(null);
+      setIsLoading(false); // 로딩 종료
       return;
     }
+
+    setIsLoading(true); // 로딩 시작
 
     const foundMob = mobInfo.find((i) => i.이름 === mobName);
 
     if (!foundMob) {
       alert("해당 몬스터를 찾을 수 없습니다.");
+      setIsLoading(false); // 로딩 종료
       return;
     }
 
-    setSearchMobInput(foundMob.이름);
-    setMobResult({
-      ...foundMob,
-    });
+    setMobResult({ ...foundMob });
+    setIsLoading(false); // 로딩 종료
   }, [mobName]); // mobName이 변경될 때마다 실행
 
   // 검색어 입력 시 실행되는 함수
@@ -68,14 +71,16 @@ const MobPage = () => {
     if (selectedMob) {
       foundMob = mobInfo.find((i) => i.이름 === selectedMob.이름);
     } else {
-      foundMob = mobInfo.find((i) => i.이름 === searchMobInput);
+      foundMob = mobInfo.filter((i) =>
+        i.이름 && i.이름.startsWith(searchMobInput) ? i : null
+      );
     }
 
     if (!foundMob) {
       alert("해당 몬스터를 찾을 수 없습니다.");
       return;
     } else {
-      navigate(`/mob/${foundMob.이름}`);
+      navigate(`/mob/${foundMob[0].이름}`);
     }
   };
 
@@ -84,6 +89,11 @@ const MobPage = () => {
       searchMob();
     }
   };
+
+  // 로딩 상태에 따라 렌더링
+  if (isLoading) {
+    return <div>로딩 중...</div>; // 로딩 중 표시
+  }
 
   return (
     <div id="wrap">
@@ -106,9 +116,9 @@ const MobPage = () => {
                 >
                   <img
                     className="suggestion-img"
-                    src={`https://maplestory.io/api/kms/284/mob/${mob.mobCode}/icon?resize=1`}
+                    src={`https://maplestory.io/api/kms/284/mob/${mob.mobCode}/icon?resize=2`}
                     onError={(e) => {
-                      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mob.mobCode}/icon?resize=1`;
+                      e.target.src = `https://maplestory.io/api/TMS/209/mob/${mob.mobCode}/icon?resize=2`;
                     }}
                     alt="icon"
                   />
