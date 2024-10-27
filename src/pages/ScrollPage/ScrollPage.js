@@ -17,9 +17,8 @@ const SearchScroll = () => {
         return Object.keys(scrollType).some((key) => {
           return (
             mob.주문서 &&
-            mob.주문서.includes(key) &&
-            actualScrollName &&
-            actualScrollName.includes(scrollType[key])
+            mob.주문서.split("/").some((item) => item.trim() === key) && // 정확한 일치 여부 확인
+            actualScrollName === scrollType[key] // 정확히 일치하는 scrollType 확인
           );
         });
       })

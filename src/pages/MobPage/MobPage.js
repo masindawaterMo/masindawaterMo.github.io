@@ -45,8 +45,9 @@ const MobPage = () => {
 
     if (searchValue) {
       const filtered = mobInfo.filter((i) =>
-        i.이름.toLowerCase().startsWith(searchValue)
+        i?.이름?.toLowerCase().startsWith(searchValue)
       );
+
       setFilteredMobs(filtered);
       setShowSuggestions(filtered.length > 0);
     } else {
