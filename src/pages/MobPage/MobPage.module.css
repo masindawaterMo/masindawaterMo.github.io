@@ -5,9 +5,22 @@
 }
 
 .row {
-  margin-top: 2rem;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   max-width: 88rem;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 0.9rem;
 }

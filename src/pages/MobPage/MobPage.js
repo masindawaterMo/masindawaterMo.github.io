@@ -12,6 +12,9 @@ const MobPage = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [visibleCount, setVisibleCount] = useState(20); // 한 번에 렌더링할 몬스터 수
+  const [levelRange, setLevelRange] = useState([1, 200]); // 레벨 범위 필터
+  const [mobType, setMobType] = useState("all"); // 몹 타입 필터
+  const [region, setRegion] = useState("all"); // 지역 필터
   const { mobName } = useParams();
   const navigate = useNavigate();
 
@@ -108,6 +111,24 @@ const MobPage = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getFilteredMobs = () => {
+    return mobInfo
+      .filter((mob) => {
+        const matchesLevel =
+          mob.레벨 >= levelRange[0] && mob.레벨 <= levelRange[1];
+        const matchesType =
+          mobType === "all" ||
+          (mobType === "normal" && !mob.보스) || // 일반 몹
+          (mobType === "boss" && mob.보스 === "O"); // 보스 몹
+        const matchesRegion = region === "all" || mob.지역 === region;
+
+        return matchesLevel && matchesType && matchesRegion;
+      })
+      .filter((mob) => mob.이름 && mob.레벨 && mob.HP)
+      .sort((a, b) => a.레벨 - b.레벨)
+      .slice(0, visibleCount);
+  };
+
   if (isLoading) {
     return <div>로딩 중...</div>;
   }
@@ -151,15 +172,69 @@ const MobPage = () => {
       {mobResult ? (
         <MobDetailCard mobResult={mobResult} />
       ) : (
-        <div className={styles["container"]}>
-          <div className={styles["row"]}>
-            {mobInfo
-              .filter((mob) => mob.이름 && mob.레벨 && mob.HP)
-              .sort((a, b) => a.레벨 - b.레벨)
-              .slice(0, visibleCount) // visibleCount까지의 몬스터만 표시
-              .map((mob, i) => (
+        <div>
+          {/* 필터링 섹션 */}
+          <div className={styles.filters}>
+            {/* 레벨 범위 선택 */}
+            <label>
+              레벨 :&nbsp;
+              <input
+                type="number"
+                value={levelRange[0]}
+                onChange={(e) =>
+                  setLevelRange([Number(e.target.value), levelRange[1]])
+                }
+              />
+              &nbsp;&nbsp;~&nbsp;&nbsp;
+              <input
+                type="number"
+                value={levelRange[1]}
+                onChange={(e) =>
+                  setLevelRange([levelRange[0], Number(e.target.value)])
+                }
+              />
+            </label>
+
+            {/* 몹 타입 선택 */}
+            <label>
+              타입 :&nbsp;&nbsp;
+              <select
+                value={mobType}
+                onChange={(e) => setMobType(e.target.value)}
+              >
+                <option value="all">모든 몹</option>
+                <option value="normal">일반 몹</option>
+                <option value="boss">보스 몹</option>
+              </select>
+            </label>
+
+            {/* 지역 선택 */}
+            <label>
+              지역 :&nbsp;&nbsp;
+              <select
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+              >
+                <option value="all">모든 지역</option>
+                <option value="빅토리아">빅토리아</option>
+                <option value="루디브리엄">루디브리엄</option>
+                <option value="니할사막">니할사막</option>
+                <option value="아쿠아리움">아쿠아리움</option>
+                <option value="코크">코크</option>
+                <option value="대만">대만</option>
+                <option value="중국">중국</option>
+                <option value="일본">일본</option>
+                <option value="태국">태국</option>
+                <option value="미구현">미구현</option>
+              </select>
+            </label>
+          </div>
+          <div className={styles["container"]}>
+            <div className={styles["row"]}>
+              {getFilteredMobs().map((mob, i) => (
                 <MobCard mob={mob} i={i} key={mob.이름} />
               ))}
+            </div>
           </div>
         </div>
       )}

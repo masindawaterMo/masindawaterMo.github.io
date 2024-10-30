@@ -9,7 +9,7 @@ const ItemDetailCard = (itemResult) => {
   const addItemDetail = (label, value) => {
     return value ? (
       <p>
-        {label}: {value}
+        {label} : {value}
       </p>
     ) : null;
   };
@@ -22,6 +22,7 @@ const ItemDetailCard = (itemResult) => {
   ];
 
   const stats = [
+    { label: "종류", value: weaponTypes[itemResult.종류] },
     { label: "STR", value: itemResult.STR },
     { label: "DEX", value: itemResult.DEX },
     { label: "INT", value: itemResult.INT },
@@ -78,7 +79,7 @@ const ItemDetailCard = (itemResult) => {
                 {stats.map((stat) => addItemDetail(stat.label, stat.value))}
                 <br />
                 {addItemDetail(
-                  "판매비용",
+                  "판매가격",
                   itemResult.판매비용.toLocaleString("ko-KR")
                 )}
                 {addItemDetail("드랍 몬스터", itemResult.itemDropMobs)}
