@@ -11,7 +11,7 @@ const MobPage = () => {
   const [filteredMobs, setFilteredMobs] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [visibleCount, setVisibleCount] = useState(20); // 한 번에 렌더링할 몬스터 수
+  const [visibleCount, setVisibleCount] = useState(40); // 한 번에 렌더링할 몬스터 수
   const [levelRange, setLevelRange] = useState([1, 200]); // 레벨 범위 필터
   const [mobType, setMobType] = useState("all"); // 몹 타입 필터
   const [region, setRegion] = useState("all"); // 지역 필터
