@@ -144,7 +144,7 @@ const MobPage = () => {
           onKeyDown={handleKeyDown}
           onChange={handleSearch}
         />
-        <div>
+        <div className="center">
           {showSuggestions && (
             <ul id="suggestions">
               {filteredMobs.map((mob) => (
