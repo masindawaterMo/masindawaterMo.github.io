@@ -163,12 +163,12 @@
   left: 293px;
 }
 
-.box .text-wrapper-9 {
-  font-size: 25px;
+.text-wrapper-9 {
+  font-size: 24px;
   font-weight: 10;
-  line-height: normal;
-  position: absolute;
-  top: 6%;
+  /* line-height: normal; */
+  position: relative;
+  top: 13%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;

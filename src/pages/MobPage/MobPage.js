@@ -144,7 +144,7 @@ const MobPage = () => {
           onKeyDown={handleKeyDown}
           onChange={handleSearch}
         />
-        <div className="center">
+        <div>
           {showSuggestions && (
             <ul id="suggestions">
               {filteredMobs.map((mob) => (
@@ -172,40 +172,29 @@ const MobPage = () => {
       {mobResult ? (
         <MobDetailCard mobResult={mobResult} />
       ) : (
-        <div>
+        <div className={styles["filters-mobile-container"]}>
           {/* 필터링 섹션 */}
           <div className={styles.filters}>
             {/* 레벨 범위 선택 */}
             <label>
-              레벨 :&nbsp;
+              LV :&nbsp;&nbsp;
               <input
+                style={{ width: "70px" }}
                 type="number"
-                value={levelRange[0]}
+                value={levelRange[0] === 0 ? "" : levelRange[0]}
                 onChange={(e) =>
                   setLevelRange([Number(e.target.value), levelRange[1]])
                 }
               />
               &nbsp;&nbsp;~&nbsp;&nbsp;
               <input
+                style={{ width: "70px" }}
                 type="number"
-                value={levelRange[1]}
+                value={levelRange[1] === 0 ? "" : levelRange[1]}
                 onChange={(e) =>
                   setLevelRange([levelRange[0], Number(e.target.value)])
                 }
               />
-            </label>
-
-            {/* 몹 타입 선택 */}
-            <label>
-              타입 :&nbsp;&nbsp;
-              <select
-                value={mobType}
-                onChange={(e) => setMobType(e.target.value)}
-              >
-                <option value="all">모든 몹</option>
-                <option value="normal">일반 몹</option>
-                <option value="boss">보스 몹</option>
-              </select>
             </label>
 
             {/* 지역 선택 */}
@@ -217,15 +206,35 @@ const MobPage = () => {
               >
                 <option value="all">모든 지역</option>
                 <option value="빅토리아">빅토리아</option>
+                <option value="오르비스">오르비스</option>
+                <option value="엘나스">엘나스</option>
                 <option value="루디브리엄">루디브리엄</option>
-                <option value="니할사막">니할사막</option>
+                <option value="지구방위본부">지구방위본부</option>
+                <option value="아랫마을">아랫마을</option>
                 <option value="아쿠아리움">아쿠아리움</option>
-                <option value="코크">코크</option>
+                <option value="리프레">리프레</option>
+                <option value="엘린숲">엘린숲</option>
+                <option value="니할사막">니할사막</option>
+                <option value="무릉도원">무릉도원</option>
+                <option value="시간의신전">시간의신전</option>
+                <option value="코크타운">코크타운</option>
                 <option value="대만">대만</option>
                 <option value="중국">중국</option>
                 <option value="일본">일본</option>
                 <option value="태국">태국</option>
-                <option value="미구현">미구현</option>
+              </select>
+            </label>
+
+            {/* 몹 타입 선택 */}
+            <label>
+              구분 :&nbsp;&nbsp;
+              <select
+                value={mobType}
+                onChange={(e) => setMobType(e.target.value)}
+              >
+                <option value="all">전체</option>
+                <option value="normal">일반</option>
+                <option value="boss">보스</option>
               </select>
             </label>
           </div>

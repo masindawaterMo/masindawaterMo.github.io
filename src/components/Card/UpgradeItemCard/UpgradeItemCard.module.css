@@ -62,11 +62,14 @@
     margin-left: 1rem;
     margin-top: 9px;
     padding: 15px;
-    width: 15rem;
+    width: 8rem;
     height: 3rem;
     display: block;
     text-align: center;
-    font-size: large;
+    font-size: xx-large;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .reset-button {
@@ -79,6 +82,8 @@
     font-size: 45px;
     padding: 0;
     margin: 0;
+    width: 8rem;
+    text-align: center;
   }
 
   .reset-button:hover {

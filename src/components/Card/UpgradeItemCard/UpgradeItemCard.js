@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import styles from "./UpgradeItemCard.module.css";
 import item from "../../../data/item";
 import attackSpeeds from "../../../data/attackSpeeds";
@@ -13,11 +13,25 @@ const UpgradeItemCard = ({ rankingList }) => {
   const [itemResult, setItemResult] = useState(null); // itemResult를 상태로 저장
   const [nickname, setNickname] = useState(""); // 닉네임 상태
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isUpgrading, setIsUpgrading] = useState(false); // 강화 중 상태 추가
+  const intervalId = useRef(null);
 
   useEffect(() => {
     const foundItem = item.find((i) => i.이름 === "라 투핸더");
     setItemResult(foundItem); // itemResult를 상태로 설정
   }, [itemResult]);
+
+  useEffect(() => {
+    if (isUpgrading) {
+      intervalId.current = setInterval(upgrade, 50); // intervalId에 setInterval 결과 저장
+    } else {
+      clearInterval(intervalId.current); // isUpgrading이 false일 때 interval 정리
+    }
+
+    return () => {
+      clearInterval(intervalId.current); // 컴포넌트 언마운트 시 interval 정리
+    };
+  }, [isUpgrading, remainingUpgrades]);
 
   const applyUpgradeCount = () => {
     setUpgradeCount(0);
@@ -30,8 +44,8 @@ const UpgradeItemCard = ({ rankingList }) => {
     upgradeCountChange,
     remainingUpgradesChange
   ) => {
-    setUpgradeCount(upgradeCount + upgradeCountChange);
-    setRemainingUpgrades(remainingUpgrades + remainingUpgradesChange);
+    setUpgradeCount((prev) => prev + upgradeCountChange);
+    setRemainingUpgrades((prev) => prev + remainingUpgradesChange);
     setResult(resultMessage);
   };
 
@@ -112,7 +126,7 @@ const UpgradeItemCard = ({ rankingList }) => {
     return () => {
       document.removeEventListener("keydown", handleKeyPress);
     };
-  }, [remainingUpgrades, upgradeCount]);
+  }, [remainingUpgrades, upgradeCount, isUpgrading]);
 
   const addItemResult = (label, value) => {
     if (value == undefined || value == 0) return "";
@@ -301,6 +315,22 @@ const UpgradeItemCard = ({ rankingList }) => {
     }
   }, []);
 
+  const handleStrengthenPress = () => {
+    setIsUpgrading(true);
+  };
+
+  const handleStrengthenRelease = () => {
+    setIsUpgrading(false);
+  };
+
+  const handleMouseDown = () => {
+    handleStrengthenPress();
+  };
+
+  const handleMouseUp = () => {
+    handleStrengthenRelease();
+  };
+
   return (
     <div className={styles["div-flex"]}>
       <div className="center">{renderItem()}</div>
@@ -309,7 +339,14 @@ const UpgradeItemCard = ({ rankingList }) => {
         <label className={styles["reset-button"]} onClick={applyUpgradeCount}>
           🔄
         </label>
-        <label className={styles["upgrade-button"]} onClick={upgrade}>
+        <label
+          className={styles["upgrade-button"]}
+          onMouseDown={handleMouseDown}
+          onMouseUp={handleMouseUp}
+          onTouchStart={handleStrengthenPress}
+          onTouchEnd={handleStrengthenRelease}
+          onTouchCancel={handleStrengthenRelease}
+        >
           강화
         </label>
       </div>

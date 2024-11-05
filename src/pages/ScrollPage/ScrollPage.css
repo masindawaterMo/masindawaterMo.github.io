@@ -11,7 +11,7 @@
 .scroll-page-container-row {
   margin-top: 2rem;
   display: flex;
-  justify-content: start;
+  justify-content: center;
   flex-wrap: wrap;
   max-width: 76rem;
 }

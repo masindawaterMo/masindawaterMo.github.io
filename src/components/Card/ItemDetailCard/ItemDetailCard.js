@@ -17,8 +17,8 @@ const ItemDetailCard = (itemResult) => {
   const requirements = [
     { label: "REQ STR", value: itemResult.필요STR },
     { label: "REQ DEX", value: itemResult.필요DEX },
-    { label: "REQ INT", value: itemResult.필요INT },
     { label: "REQ LUK", value: itemResult.필요LUK },
+    { label: "REQ INT", value: itemResult.필요INT },
   ];
 
   const stats = [
@@ -79,7 +79,7 @@ const ItemDetailCard = (itemResult) => {
                 {stats.map((stat) => addItemDetail(stat.label, stat.value))}
                 <br />
                 {addItemDetail(
-                  "판매가격",
+                  "판매 가격",
                   itemResult.판매비용.toLocaleString("ko-KR")
                 )}
                 {addItemDetail("드랍 몬스터", itemResult.itemDropMobs)}

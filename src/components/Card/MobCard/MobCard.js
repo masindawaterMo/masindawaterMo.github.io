@@ -50,11 +50,13 @@ const MobCard = (props) => {
       </div>
 
       <div className="mob-text">
-        <label className="mob-text-label">LV {props.mob["레벨"]}</label>
-        <label className="mob-text-label" style={{ color: "#d1010a" }}>
-          HP {props.mob["HP"]}
+        <label className="mob-text-label" style={{ color: "#F2F2F2" }}>
+          LV &nbsp;{props.mob["레벨"]}
         </label>
-        <label className="mob-text-label" style={{ color: "#54b528" }}>
+        <label className="mob-text-label" style={{ color: "#FF7C80" }}>
+          HP &nbsp;{props.mob["HP"]}
+        </label>
+        <label className="mob-text-label" style={{ color: "#85BD5F" }}>
           EXP {props.mob["경험치"]}
         </label>
       </div>
