@@ -1,3 +1,10 @@
+.filter-container {
+  width: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
 .container {
   width: auto;
   display: flex;

@@ -20,6 +20,7 @@ function App() {
           <Route path="/scroll" element={<Scroll />} />
           <Route path="/item/:itemId" element={<ItemPage />} />
           <Route path="/mob/:mobName" element={<MobPage />} />
+          <Route path="/scroll/:scrollName" element={<Scroll />} />
           <Route path="/upgradeSimul" element={<UpgradeSimulPage />} />
         </Routes>
 

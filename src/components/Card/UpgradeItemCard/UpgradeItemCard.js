@@ -17,7 +17,7 @@ const UpgradeItemCard = ({ rankingList }) => {
   const intervalId = useRef(null);
 
   useEffect(() => {
-    const foundItem = item.find((i) => i.이름 === "라 투핸더");
+    const foundItem = item.find((i) => i.이름 === "참마도");
     setItemResult(foundItem); // itemResult를 상태로 설정
   }, [itemResult]);
 

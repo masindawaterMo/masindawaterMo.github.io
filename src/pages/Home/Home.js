@@ -3,6 +3,7 @@ import ItemCard from "../../components/Card/ItemCard/ItemCard";
 import item from "../../data/item";
 import ItemFilter from "../../components/ItemFilter/ItemFilter";
 import styles from "./Home.module.css";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [filteredItems, setFilteredItems] = useState(() => {
@@ -10,6 +11,9 @@ const Home = () => {
     return storedItems ? JSON.parse(storedItems) : item.slice(0, 10); // 처음에는 10개만 로드
   });
   const [itemsToShow, setItemsToShow] = useState(50); // 한 번에 보여줄 아이템 수
+
+  const [searchItemInput, setSearchItemInput] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleBeforeUnload = () => {
@@ -44,10 +48,37 @@ const Home = () => {
     };
   }, []);
 
+  // 검색어 입력 시 실행되는 함수
+  const handleSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchItemInput(searchValue);
+
+    if (searchValue) {
+      const filtered = item.filter((i) =>
+        i.이름.toLowerCase().startsWith(searchValue)
+      );
+      setFilteredItems(filtered); // 필터링된 아이템 상태 업데이트
+    }
+  };
+
+  const handleItemSearch = (itemId) => {
+    if (itemId) {
+      navigate(`/item/${itemId}`); // 아이템 ID를 URL로 전달
+    }
+  };
+
   return (
     <div id="wrap">
       <h1>Maple History Mo</h1>
-      <div className={styles["container"]}>
+      <div style={{ textAlign: "center" }}>
+        <input
+          type="text"
+          placeholder="ex) 글라디우스"
+          value={searchItemInput}
+          onChange={handleSearch} // 검색어 입력 시 필터링
+        />
+      </div>
+      <div className={styles["filter-container"]}>
         <ItemFilter setFilteredItems={setFilteredItems} />
       </div>
 

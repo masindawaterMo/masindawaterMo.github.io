@@ -4,6 +4,7 @@ import styles from "./MobDetailCard.module.css";
 import mobDropTable from "../../../data/mobDropTable";
 import item from "../../../data/item";
 import scrollType from "../../../data/scrollType";
+import ScrollCard from "../ScrollCard/ScrollCard";
 
 const MobDetailCard = ({ mobResult }) => {
   const [errorCount, setErrorCount] = useState(0);
@@ -228,22 +229,11 @@ const MobDetailCard = ({ mobResult }) => {
 
         {mobResult.주문서 &&
           mobResult.주문서.trim() !== "" &&
-          mobResult.주문서.split("/").map((scroll, index) => (
-            <div className={styles["card"]} key={index}>
-              <img
-                className={styles["item-detail-img"]}
-                src={
-                  scrollType[scroll] === "혼돈의 주문서"
-                    ? "https://maplestory.io/api/GMS/210.1.1/item/2049100/icon?resize=8" // 혼돈의 주문서 이미지 URL
-                    : scrollType[scroll] === "백의 주문서"
-                    ? "https://maplestory.io/api/JMS/419/item/2340000/icon?resize=8" // 백의 주문서 이미지 URL
-                    : "https://maplestory.io/api/GMS/210.1.1/item/2046314/icon?resize=8" // 기본 이미지
-                }
-                alt={scrollType[scroll]}
-              />
-              <label>{scrollType[scroll]}</label>
-            </div>
-          ))}
+          mobResult.주문서
+            .split("/")
+            .map((scroll, index) => (
+              <ScrollCard scroll={scroll} index={index}></ScrollCard>
+            ))}
       </div>
     </div>
   );

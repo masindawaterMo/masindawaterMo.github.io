@@ -23,7 +23,7 @@ function Nav() {
         </div>
 
         <div className={`navbar-right ${menuOpen ? "open" : ""}`}>
-          <Link className="navbarMenu" to={"/item"} onClick={toggleMenu}>
+          <Link className="navbarMenu" to={"/"} onClick={toggleMenu}>
             아이템
           </Link>
           <Link className="navbarMenu" to={"/mob"} onClick={toggleMenu}>
