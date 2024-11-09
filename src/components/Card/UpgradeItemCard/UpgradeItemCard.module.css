@@ -70,6 +70,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-user-select: none; /* Safari, Chrome */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* 표준 */
   }
 
   .reset-button {
