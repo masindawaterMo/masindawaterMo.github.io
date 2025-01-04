@@ -14896,7 +14896,7 @@ const mobDropTable = [
     drop8: "게파트",
     probability8: 0.001,
     drop9: "골든 스노우보드",
-    probability9: 0.0,
+    probability9: 0.00004,
     drop10: "-",
     probability10: 0.0,
     drop11: "-",

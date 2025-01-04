@@ -334,7 +334,6 @@ const UpgradeItemCard = ({ rankingList }) => {
   return (
     <div className={styles["div-flex"]}>
       <div className="center">{renderItem()}</div>
-      <label className={styles["upgrade-label"]}>{result}</label>
       <div className="center">
         <label className={styles["reset-button"]} onClick={applyUpgradeCount}>
           🔄
@@ -350,6 +349,8 @@ const UpgradeItemCard = ({ rankingList }) => {
           강화
         </label>
       </div>
+      <label className={styles["upgrade-label"]}>{result}</label>
+
       <div className="center">
         {remainingUpgrades === 0 && (
           <div className={styles["div-flex-row"]}>

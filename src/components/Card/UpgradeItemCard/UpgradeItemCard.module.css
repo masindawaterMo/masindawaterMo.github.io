@@ -54,6 +54,7 @@
 
 @media (max-width: 768px) {
   .upgrade-button {
+    margin-top: 1rem;
     background-color: #4caf50;
     color: white;
     border: none;
@@ -77,6 +78,8 @@
   }
 
   .reset-button {
+    margin-top: 1rem;
+
     background-color: transparent;
     border: none;
     border-radius: 10px;
